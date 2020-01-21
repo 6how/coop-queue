@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoQ.Web", "coop-queue\CoQ.Web.csproj", "{7587248A-A3E2-4091-9B57-B10E8EDF3705}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoQ.Domain", "CoQ.Domain\CoQ.Domain.csproj", "{A84936FC-E367-4056-9615-28F6EA529D5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoQ.Domain", "CoQ.Domain\CoQ.Domain.csproj", "{A84936FC-E367-4056-9615-28F6EA529D5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoQ.Models", "CoQ.Models\CoQ.Models.csproj", "{3018D53C-253A-4281-9D4A-C0231E3D345C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoQ.Models", "CoQ.Models\CoQ.Models.csproj", "{3018D53C-253A-4281-9D4A-C0231E3D345C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -20,25 +20,25 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Co-op Queue</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                <input id="searchField" type="text" name="searchText" placeholder="Search..."/>
         </nav>
     </header>
+
+    <div class="d-inline-flex p-2 bd-highlight">
+        <div class="d-flex flex-column bd-highlight mb-3">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Profile">
+                <div class="p-2 bd-highlight">Profile</div>
+            </a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Friends">
+                <div class="p-2 bd-highlight">Friends</div>
+            </a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Newsfeed">
+                <div class="p-2 bd-highlight">Newsfeed</div>
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">

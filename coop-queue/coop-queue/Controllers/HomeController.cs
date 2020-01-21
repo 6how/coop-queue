@@ -20,6 +20,26 @@ namespace coop_queue.Controllers
             return View();
         }
 
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        public IActionResult Friends()
+        {
+            return View();
+        }
+
+        public IActionResult Newsfeed()
+        {
+            return View();
+        }
+
+        public IActionResult Messages()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
