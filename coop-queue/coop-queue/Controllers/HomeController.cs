@@ -30,11 +30,6 @@ namespace coop_queue.Controllers
             return View();
         }
 
-        public IActionResult Newsfeed()
-        {
-            return View();
-        }
-
         public IActionResult Messages()
         {
             return View();

@@ -13,24 +13,31 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+        function toggleDiv(dropdownMenu) {
+            var div = document.getElementById(dropdownMenu);
+            div.style.display = div.style.display == "none" ? "block" : "none";
+        }
+    </script>
 </head>
 <body>
     <header>
         <div id="topNavMenu">
-            <a class="navbar-brand" id="topLeftLogo" asp-area="" asp-controller="Home" asp-action="Index"></a>
+            <a id="topLeftLogo" asp-area="" asp-controller="Home" asp-action="Index"></a>
             <input id="searchField" type="text" name="searchText" placeholder="Search..."/>
             <button id="searchButton"></button>
-            <button id="dropdownMenu"></button>
+            <button id="dropdownMenuButton"></button>
         </div>
     </header>
-    <div id="belowTopNavMenu">
+    <div>
         <div id="leftNavMenu">
-            <a asp-area="" asp-controller="Home" asp-action="Profile"><div class="leftNavMenuItem">Profile</div></a>
+            <a asp-controller="Home" asp-action="Profile"><div class="leftNavMenuItem">Profile</div></a>
             <a asp-controller="Home" asp-action="Friends"><div class="leftNavMenuItem">Friends</div></a>
-            <a asp-controller="Home" asp-action="Newsfeed"><div class="leftNavMenuItem">Newsfeed</div></a>
+            <a asp-controller="Home" asp-action="Messages"><div class="leftNavMenuItem">Messages</div></a>
         </div>
 
         <div class="mainContent">

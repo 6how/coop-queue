@@ -1,13 +1,6 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  margin-left: 10px;
-  text-align: left;
-  word-break: break-all;
-}
-
 #searchField {
     display: inline;
     width: 30vw;
@@ -34,7 +27,7 @@ a.navbar-brand {
     margin-top: 6px;
 }
 
-#dropdownMenu {
+#dropdownMenuButton {
     background-image: url("menu.png");
     display: inline;
     width: 42px;
@@ -49,6 +42,10 @@ a.navbar-brand {
     border-radius: 5px;
 }
 
+#dropdownMenu {
+
+}
+
 #topLeftLogo {
     display: inline;
     background-image: url("co-op-queue.png");
@@ -57,6 +54,7 @@ a.navbar-brand {
     background-size: 180px 45px;
     margin-right: 10px;
     margin-top: 6px;
+    margin-left: 10px;
     float: left;
 }
 
@@ -87,7 +85,7 @@ a.navbar-brand {
     height: 40px;
     padding-top: 5px;
     padding-bottom: 10px;
-    padding-left: 10px;
+    padding-left: 30px;
     padding-right: 20px;
     margin: 5px;
     font-size: 16pt;
@@ -102,9 +100,26 @@ a.navbar-brand {
         color: #0377fc;
     }
 
-#belowTopNavMenu{
-    display: inline-block;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
