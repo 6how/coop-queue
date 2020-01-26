@@ -5,11 +5,12 @@ for details on configuring this project to bundle and minify static web assets. 
     display: inline;
     width: 30vw;
     height: 40px;
-    margin-left: 2vw;
+    margin-left: 1.5vw;
     border-radius: 5px;
     padding-left: 10px;
     float: left;
     margin-top: 7px;
+    font-size: 16pt;
 }
 
 #searchButton {
@@ -42,8 +43,19 @@ for details on configuring this project to bundle and minify static web assets. 
     border-radius: 5px;
 }
 
-#dropdownMenu {
+.dropdownMenuItem{
+    padding: 10px;
+}
 
+#dropdownMenu {
+    display: block;
+    background-color: #0377fc;
+    position: fixed;
+    z-index: 99;
+    top: 48px;
+    right: 100vw;
+    width: 10vw;
+    height: 30vh;
 }
 
 #topLeftLogo {
@@ -69,7 +81,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 #leftNavMenu {
     display: inline-block;
-    width: 210px;
+    width: 220px;
     height: 100vh;
     background-color: #0377fc;
 }
@@ -83,21 +95,23 @@ for details on configuring this project to bundle and minify static web assets. 
     display: inline-block;
     width: 200px;
     height: 40px;
-    padding-top: 5px;
+    padding-top: 3px;
     padding-bottom: 10px;
-    padding-left: 30px;
+    padding-left: 15px;
     padding-right: 20px;
-    margin: 5px;
+    margin: 10px 10px 0px 10px;
     font-size: 16pt;
     text-align: left;
     text-decoration: none;
     color: white;
     background-color: #0377fc;
+    border: 1px solid #0377fc;
 }
 
     .leftNavMenuItem:hover {
-        background-color: white;
-        color: #0377fc;
+        border: 1px solid white;
+        background-color: #0377fc;
+        color: white;
     }
 
 
