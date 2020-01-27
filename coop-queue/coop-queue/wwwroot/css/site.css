@@ -73,28 +73,34 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 #topNavMenu {
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
+    z-index: 5;
     height: 55px;
+    width: 100vw;
     border-bottom: solid 1px;
     border-bottom-color: cornflowerblue;
+    background-color: white;
 }
 
 #leftNavMenu {
+    position: fixed;
     display: inline-block;
+    top: 55px;
+    z-index: 5;
     width: 220px;
-    height: 100vh;
+    height: calc(100vh - 55px);
     background-color: #0377fc;
 }
 
 .mainContent {
     display: inline-block;
-    position: fixed;
-    top: 56px;
-    left: 221px;
-    height: 100vh;
-    padding: 20px;
+    position: relative;
+    width: calc(100vw - 240px);
+    height: calc(100vh - 55px);
+    left: 220px;
+    top: 55px;
 }
 
 .leftNavMenuItem {
@@ -120,6 +126,135 @@ for details on configuring this project to bundle and minify static web assets. 
         color: white;
     }
 
+/*Messages and Message Threads*/
+.messageThreadPreview {
+    width: calc(100vw - 240px);
+    position: relative;
+    height: 80px;
+    background-color: white;
+    text-decoration: none;
+}
+
+    .messageThreadPreview:hover, .messageThreadPreview:active {
+        background-color: #f5f5f5;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+.profilePictureThumbnail {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+    background-color: gray;
+    color: black;
+    text-align: center;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
+
+.nameAndTextPreview {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.userNameThreadPreview {
+    display: block;
+    font-size: 18pt;
+    color: black;
+    text-decoration: none;
+}
+
+.textThreadPreview {
+    display: block;
+    color: gray;
+    text-decoration: none;
+}
+
+.messagesSection {
+    display: block;
+    position: fixed;
+    top: 75px;
+    left: 240px;
+    width: calc(100vw - 270px);
+    height: calc(100vh - 155px);
+    background-color: white;
+}
+
+.typingMessageSection {
+    display: block;
+}
+
+#sendMessageButton {
+    display: inline-block;
+    position: fixed;
+    top: calc(100vh - 55px);
+    right: 20px;
+    height: 35px;
+    width: 55px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #0377fc;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+}
+
+#sendMessageField {
+    display: inline-block;
+    height: 35px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    width: calc(100vw - 290px);
+    position: fixed;
+    top: calc(100vh - 55px);
+    border: 1px solid #0377fc;
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 10px;
+}
+
+.newMessageLine {
+    margin-top: 5px;
+    display: block;
+    width: calc(100vw - 270px);
+    height: 35px;
+}
+
+.messageFromFriend {
+    display: block;
+    float: left;
+    margin-left: 10px;
+    color: white;
+    background-color: gray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    max-width: 30vw;
+}
+
+.messageFromUser {
+    display: block;
+    float: right;
+    margin-right: 10px;
+    color: white;
+    background-color: #0377fc;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    max-width: 30vw;
+}
+
+
+
+
+
 
 
 
@@ -144,7 +279,7 @@ for details on configuring this project to bundle and minify static web assets. 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {

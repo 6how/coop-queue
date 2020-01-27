@@ -2,7 +2,14 @@
     ViewData["Title"] = "Messages Page";
 }
 
-<div>
-    <h1>Messages</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div>
+        <a asp-controller="Home" asp-action="MessageThread">
+            <div class="messageThreadPreview">
+                <div class="profilePictureThumbnail"><i class="fas fa-user"></i></div>
+                <div class="nameAndTextPreview">
+                    <div class="userNameThreadPreview">Rick Sanchez</div>
+                    <div class="textThreadPreview">Hey! Have you seen the trailer the new Call of Duty? Looks pretty sick right? wanna play?</div>
+                </div>
+            </div>
+        </a>
+    </div>

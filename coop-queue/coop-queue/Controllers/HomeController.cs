@@ -35,6 +35,11 @@ namespace coop_queue.Controllers
             return View();
         }
 
+        public IActionResult MessageThread()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
