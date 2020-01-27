@@ -2,7 +2,13 @@
     ViewData["Title"] = "Friends Page";
 }
 
-<div>
-    <h1>Friends</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div  style="padding: 20px;">
+    <h1>Friends (1)</h1>
+    <div class="divideLine"></div>
+    <a asp-controller="Home" asp-action="Profile">
+        <div class="friendCard">
+            <img class="cardPhoto" resource="" />
+            <div class="cardName">Rick Sanchez</div>
+        </div>
+    </a>
 </div>

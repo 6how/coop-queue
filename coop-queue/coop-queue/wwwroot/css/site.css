@@ -5,23 +5,25 @@ for details on configuring this project to bundle and minify static web assets. 
     display: inline;
     width: 30vw;
     height: 40px;
-    border-radius: 5px;
-    padding-left: 10px;
+    border: 1px solid #0377fc;
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 15px;
+    padding-bottom: 3px;
     float: left;
     margin-top: 7px;
-    font-size: 16pt;
+    margin-right: 0px;
+    font-size: 14pt;
 }
 #searchBtn {
     display: inline;
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     font-size: 20px;
-    margin-left: 5px;
-    border-radius: 5px;
     background-color: #0377fc;
-    border-style: solid;
+    border-radius: 0px 10px 10px 0px;
+    border-style: none;
     color: white;
-    margin-top: 6px;
+    margin-top: 7px;
 }
 
 #dropdownMenuButton {
@@ -58,17 +60,17 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 #topLeftLogo {
+    background-image: url("co-op-queue.png");
+    background-repeat: no-repeat;
+    background-size: 180px 45px;
     display: inline;
     width: 180px;
     color: #0377fc;
     height: 45px;
-    font-size: 35px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-stretch: extra-condensed;
     text-decoration: none;
     margin-right: 18px;
-    margin-top: 0px;
-    margin-left: 22px;
+    margin-top: 7px;
+    margin-left: 16px;
     float: left;
 }
 
@@ -145,31 +147,32 @@ for details on configuring this project to bundle and minify static web assets. 
     }
 
 .profilePictureThumbnail {
+    background-image: url("Rick.png");
+    background-size: 60px 60px;
     display: inline-block;
     height: 60px;
     width: 60px;
     margin: 10px;
     background-color: gray;
     color: black;
-    text-align: center;
-    font-size: 2.5rem;
     text-decoration: none;
 }
 
 .nameAndTextPreview {
+    position: relative;
+    vertical-align: text-bottom;
+    margin-bottom: 15px;
     display: inline-block;
     text-decoration: none;
 }
 
 .userNameThreadPreview {
-    display: block;
     font-size: 18pt;
     color: black;
     text-decoration: none;
 }
 
 .textThreadPreview {
-    display: block;
     color: gray;
     text-decoration: none;
 }
@@ -224,7 +227,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .messageFromFriend {
-    display: block;
+    display: inline-block;
     float: left;
     margin-left: 10px;
     color: white;
@@ -238,7 +241,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .messageFromUser {
-    display: block;
+    display: inline-block;
     float: right;
     margin-right: 10px;
     color: white;
@@ -251,75 +254,89 @@ for details on configuring this project to bundle and minify static web assets. 
     max-width: 30vw;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.dateStamp {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: block;
+    width: calc(100vw - 270px);
+    height: 35px;
+    text-align: center;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.messageDate {
+    margin: 5px;
+    display: inline-block;
+    color: lightgray;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.dateLines {
+    margin-left: auto;
+    margin-right: auto;
+    height: 2px;
+    background-color: #f0f0f0;
+    border: none;
+    width: 70vw;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+.userPhotoByMessage {
+    display: inline-block;
+    float: right;
+    margin-left: 5px;
+    height: 35px;
+    width: 35px;
+    border-radius: 17px;
+    background-color:aqua;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 20px;
+.friendPhotoByMessage {
+    display:inline-block;
+    float: left;
+    margin-left: 5px;
+    height: 35px;
+    width: 35px;
+    border-radius: 17px;
+    background-image: url("Rick.png");
+    background-size: 35px 35px;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
-  height: 20px;
-  line-height: 40px; /* Vertically center the text there */
+
+
+
+/*Friends Page*/
+.divideLine {
+    height: 1px;
+    background-color: black;
+    width: calc(100vw - 270px);
 }
+
+.friendCard {
+    width: 200px;
+    height: 240px;
+    background-color: lightgray;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.cardPhoto {
+    margin: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
+    background-image: url("Rick.png");
+    background-size: 200px 200px;
+}
+
+.cardName {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16pt;
+    padding: 3px;
+    text-decoration: none;
+    color:black;
+}
+
+    .cardName:hover {
+        text-decoration: none;
+        color: black;
+    }
