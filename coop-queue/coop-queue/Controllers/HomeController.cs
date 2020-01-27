@@ -30,6 +30,11 @@ namespace coop_queue.Controllers
             return View();
         }
 
+        public IActionResult Likes()
+        {
+            return View();
+        }
+
         public IActionResult Messages()
         {
             return View();

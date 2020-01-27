@@ -102,7 +102,7 @@ for details on configuring this project to bundle and minify static web assets. 
     display: inline-block;
     position: relative;
     width: calc(100vw - 220px);
-    height: calc(100vh - 55px);
+    min-height: calc(100vh - 55px);
     left: 220px;
     top: 55px;
     background-color: lightgray;
@@ -317,9 +317,10 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .friendCard {
+    display: inline-block;
     width: 200px;
-    height: 240px;
-    background-color: lightgray;
+    height: 230px;
+    background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-right: 20px;
@@ -338,7 +339,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .cardName {
     text-align: center;
     vertical-align: middle;
-    font-size: 16pt;
+    font-size: 12pt;
     padding: 3px;
     text-decoration: none;
     color:black;
@@ -349,16 +350,52 @@ for details on configuring this project to bundle and minify static web assets. 
         color: black;
     }
 
+/*Likes Page*/
+.likesCard {
+    display: inline-block;
+    width: 200px;
+    height: 230px;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.likesCardPhoto {
+    margin: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
+    background-image: url("cod-mw.jpg");
+    background-size: 200px 200px;
+}
+
+.likesCardName {
+    text-align: center;
+    font-size: 10pt;
+    padding: 3px;
+    text-decoration: none;
+    color: black;
+}
+
+    .likesCardName:hover {
+        text-decoration: none;
+        color: black;
+    }
+
 
 
 /*Profile Page*/
 .profileHeader {
+    position: fixed;
+    z-index:2;
     width: calc(100vw - 220px);
-    height: 20vh;
+    height: 30vh;
     background-color: lightsalmon;
 }
 
-.profilePhoto{
+.profilePhoto {
     height: 30vh;
     width: 30vh;
     border-radius: 15vh;
@@ -367,6 +404,7 @@ for details on configuring this project to bundle and minify static web assets. 
     background-position: center;
     background-size: 30vh 30vh;
     position: fixed;
+    z-index: 3;
     left: calc(220px + 3vw);
     top: calc(50px + 3vw);
 }
@@ -374,8 +412,49 @@ for details on configuring this project to bundle and minify static web assets. 
 .userName {
     position: fixed;
     z-index: 6;
-    left: calc(220px + 26vw);
+    left: calc(220px + 39vh);
     top: calc(55px + 12vh);
     font-size: 38pt;
     color: #292929;
+}
+
+.userBio {
+    position: fixed;
+    z-index: 6;
+    left: calc(220px + 39vh);
+    top: calc(55px + 20vh);
+    padding-top: 10px;
+    line-height: 1;
+    font-size: 14pt;
+    color: #292929;
+}
+
+#editProfileButton {
+    height: 40px;
+    width: 100px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: #292929;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.profilePageContent {
+    position: relative;
+    min-height: calc(100vh - 55px);
+    display: inline-block;
+    position: relative;
+    width: calc(100vw - 220px);
+    min-height: calc(100vh - 55px);
+    top: 30vh;
+    background-color: lightgray;
+}
+
+.profileLikesSection {
+    margin-top: 2vh;
+}
+
+.profileFriendSection {
+    margin-top: 20px;
 }
