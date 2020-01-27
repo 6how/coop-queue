@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Co-op Queue</title>
-
+    <script src="https://kit.fontawesome.com/68e8903aea.js" crossorigin="anonymous"></script>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -16,20 +16,24 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
-
 </head>
 <body>
     <header>
         <div id="topNavMenu">
-            <a id="topLeftLogo" asp-area="" asp-controller="Home" asp-action="Index"></a>
+            <a id="topLeftLogo" asp-area="" asp-controller="Home" asp-action="Index"><b>Co-opQueue</b></a>
             <input id="searchField" type="text" name="searchText" placeholder="Search..." />
-            <button id="searchButton"></button>
-            <select id="dropdownMenuButton" style="-webkit-appearance: none;">
-                <option class="dropdownMenuItem" selected disabled hidden></option>
-                <option class="dropdownMenuItem" >Settings</option>
-                <option class="dropdownMenuItem" >Preferences</option>
-                <option class="dropdownMenuItem" >Logout</option>
-            </select>
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary" data-toggle="dropdown" style="border:none ; border-radius: 3px; position: fixed; top: 9px; right: 10px; height: 38px; width: 38px;">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button">Settings</button>
+                    <button class="dropdown-item" type="button">Preferences</button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" type="button" style="color: red;">Logout</button>
+                </div>
+            </div>
 
         </div>
     </header>
