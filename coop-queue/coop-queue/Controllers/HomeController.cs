@@ -22,6 +22,16 @@ namespace coop_queue.Controllers
             return View();
         }
 
+        public ActionResult Preferences()
+        {
+            return View();
+        }
+
+        public ActionResult Settings()
+        {
+            return View();
+        }
+
         public ActionResult Profile()
         {
             List<FriendshipModel> testFriends = new List<FriendshipModel>();
@@ -40,6 +50,16 @@ namespace coop_queue.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
         }
 
         public ActionResult Friends()

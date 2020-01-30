@@ -131,6 +131,88 @@ for details on configuring this project to bundle and minify static web assets. 
         color: white;
     }
 
+/*Newsfeed Page*/
+#filtersBtn {
+    position: fixed;
+    top: 75px;
+    right: 140px;
+    height: 30px;
+    width: 80px;
+    color: #292929;
+    border: 1px solid gray;
+    text-align: center;
+    padding-top: 3px;
+    background-color: ButtonFace;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.filtersScreen {
+    display: none;
+    position: fixed;
+    z-index: 7;
+    top: 105px;
+    right: 140px;
+    height: 300px;
+    width: 450px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid #bfbfbf;
+    border-radius: 5px 0px 5px 5px;
+    background-color: white;
+}
+
+.filtersScreenHeaders{
+
+}
+
+#filterItems{
+    
+}
+
+#sortBtn {
+    position: fixed;
+    top: 75px;
+    right: 40px;
+    height: 30px;
+    width: 90px;
+    color: #292929;
+    border: 1px solid gray;
+    text-align: center;
+    padding-top: 3px;
+    background-color: ButtonFace;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+#sortScreen {
+    display: none;
+    position: fixed;
+    z-index: 7;
+    top: 105px;
+    right: 40px;
+    height: 180px;
+    width: 90px;
+    border: 1px solid #bfbfbf;
+    border-radius: 0px 0px 5px 5px;
+    background-color: white;
+}
+
+.sortScreenItem {
+    padding-left: 0;
+    display: none;
+    width: 90px;
+    height: 30px;
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
+
 /*Messages and Message Threads*/
 .messageThreadPreview {
     width: calc(100vw - 220px);

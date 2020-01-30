@@ -2,7 +2,55 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div style="padding: 20px;">
-        <h1>Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<script type="text/javascript">
+    function toggleDiv() {
+        var filtersScreen = document.getElementById("filtersScreen");
+        filtersScreen.style.display = filtersScreen.style.display === 'none' ? '' : 'none';
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#filtersBtn").click(function () {
+            $(".filtersScreen").toggle();
+        });
+
+        $("#sortBtn").click(function () {
+            $("#sortScreen").toggle();
+            $(".sortScreenItem").toggle();
+        });
+    });
+</script>
+
+
+<div style="padding: 20px;">
+    <div class="newsfeedTop">
+        <div id="filtersBtn">
+            <b>Filter </b><i class="fas fa-filter"></i>
+        </div>
+        <div class="filtersScreen">
+            <div class="filtersScreenHeaders">Content Types</div>
+            <input type="checkbox" class="filterItems" value="alpha">Alpha<br>
+            <input type="checkbox" class="filterItems" value="preRelease">Pre-Release<br>
+            <input type="checkbox" class="filterItems" value="dlc">DLC<br>
+
+            <div class="filtersScreenHeaders">Price Ranges</div>
+            <input type="checkbox" class="filterItems" value="free">Free<br>
+            <input type="checkbox" class="filterItems" value="under5">Under $5<br>
+            <input type="checkbox" class="filterItems" value="under10">Under $10<br>
+            <input type="checkbox" id="filterItems" value="anyPrice">Any<br>
+        </div>
+
+        <div id="sortBtn">
+            <b>Order By </b><i class="fas fa-sort"></i>
+        </div>
+        <div id="sortScreen">
+            <a><div class="sortScreenItem">Title <i class="fas fa-sort-alpha-down"></i></div></a>
+            <a><div class="sortScreenItem">Title <i class="fas fa-sort-alpha-down-alt"></i></div></a>
+            <a><div class="sortScreenItem">Rating <i class="fas fa-thumbs-up"></i></div></a>
+            <a><div class="sortScreenItem">Rating <i class="fas fa-thumbs-down"></i></div></a>
+            <a><div class="sortScreenItem">Price <i class="fas fa-long-arrow-alt-up"></i></div></a>
+            <a><div class="sortScreenItem">Price <i class="fas fa-long-arrow-alt-down"></i></div></a>
+        </div>
     </div>
+</div>
