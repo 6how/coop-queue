@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoQ.Domain", "CoQ.Domain\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoQ.Models", "CoQ.Models\CoQ.Models.csproj", "{3018D53C-253A-4281-9D4A-C0231E3D345C}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CoQ.Database", "CoQ.Database\CoQ.Database.sqlproj", "{79AE8D6B-5B3E-493E-89D8-96CC69A73DAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{3018D53C-253A-4281-9D4A-C0231E3D345C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3018D53C-253A-4281-9D4A-C0231E3D345C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3018D53C-253A-4281-9D4A-C0231E3D345C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79AE8D6B-5B3E-493E-89D8-96CC69A73DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79AE8D6B-5B3E-493E-89D8-96CC69A73DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79AE8D6B-5B3E-493E-89D8-96CC69A73DAD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{79AE8D6B-5B3E-493E-89D8-96CC69A73DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79AE8D6B-5B3E-493E-89D8-96CC69A73DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79AE8D6B-5B3E-493E-89D8-96CC69A73DAD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

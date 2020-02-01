@@ -7,11 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using coop_queue.Models;
 using CoQ.Web.Models.ViewModels;
 using CoQ.Models.Models;
+using CoQ.Domain.Abstracts;
 
 namespace coop_queue.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ICoopQueue coopQueue;
+
+        public HomeController(ICoopQueue coopQueue)
+        {
+            this.coopQueue = coopQueue;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -22,21 +30,16 @@ namespace coop_queue.Controllers
             return View();
         }
 
-        public ActionResult Profile()
+        [HttpGet]
+        public async Task<ActionResult> Profile()
         {
-            List<FriendshipModel> testFriends = new List<FriendshipModel>();
-            testFriends.Add(coleAbdou);
-            testFriends.Add(coleTest);
-
-            List<LikedGameModel> testLikedGames = new List<LikedGameModel>();
-            testLikedGames.Add(coleHalo);
-            testLikedGames.Add(coleLast);
+            int UserID = 1;
 
             ProfileViewModel viewModel = new ProfileViewModel
             {
-                User = coleGlaser,
-                Friends = testFriends,
-                LikedGames = testLikedGames
+                User = await coopQueue.GetUserProfile(UserID),
+                Friends = await coopQueue.GetUserFriend(UserID),
+                LikedGames = await coopQueue.GetLikedGame(UserID)
             };
 
             return View(viewModel);
