@@ -3,11 +3,9 @@
 AS
 
 SELECT 
-	f.FriendFromID AS Sender,
-	f.FriendToID AS Recipient,
-	f.AddedOn AS AddedDate,
-	u.UserName AS UserName
+	f.FriendshipID,	
+	f.FriendFromID AS FriendFromID,
+	f.FriendToID AS FriendToID,
+	f.AddedOn AS FriendAddedOn
 FROM CoQ.Friendships f
-JOIN CoQ.Users u ON u.UserID = f.FriendFromID
-JOIN CoQ.Users ON u.UserID = f.FriendToID
-WHERE f.FriendFromID = @UserID AND f.FriendToID = @UserID AND u.IsActive = 1 AND f.IsActive = 1
+WHERE (f.FriendFromID = @UserID OR f.FriendToID = @UserID) AND f.IsActive = 1

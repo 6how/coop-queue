@@ -35,11 +35,11 @@ namespace coop_queue
             });
 
             // Database hookup
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<CoopQueueDB>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DbConnectionString")));
             // David's version was .RequireConfimedAccount ?
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedEmail = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<CoopQueueDB>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ICoopQueue, CoopQueueDB>();

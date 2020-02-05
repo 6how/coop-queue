@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoQ.Domain.Entities
 {
     public class SPGetUserAccount
     {
+        [Key]
         public int UserID { get; set; }
 
         public string UserName { get; set; }
 
         public string Email { get; set; }
+
+        public string UserDescription { get; set; }
 
         public string ImageName { get; set; }
 

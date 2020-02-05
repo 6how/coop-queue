@@ -12,5 +12,10 @@ namespace coop_queue.Data
 			: base(options)
 		{
 		}
-	}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+			modelBuilder.HasDefaultSchema("CoQ");
+        }
+    }
 }

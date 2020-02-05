@@ -4,14 +4,23 @@ using CoQ.Models.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CoQ.Domain.Repositories
 {
-    public class CoopQueueDB : ICoopQueue
+    public class CoopQueueDB : DbContext, ICoopQueue
     {
+        public CoopQueueDB(DbContextOptions<CoopQueueDB> options) : base(options)
+        {  }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("CoQ");
+        }
         /// <summary>
         /// Gets a user account.
         /// </summary>
@@ -34,11 +43,11 @@ namespace CoQ.Domain.Repositories
         /// <returns>The user's account object.</returns>
         public async Task<SPGetUserAccount> GetUserProfile(int UserID)
         {
-            var account = await GetUserAccount.FromSql("EXEC CoQ.GetUserAccount @UserID", UserID)
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+
+            return await GetUserAccount.FromSql("EXEC CoQ.GetUserAccount @UserID", userParam)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-
-            return account;
         }
 
         /// <summary>
@@ -48,8 +57,9 @@ namespace CoQ.Domain.Repositories
         /// <returns>List of user's friends.</returns>
         public async Task<List<FriendshipModel>> GetUserFriend(int UserID)
         {
-            return await GetUserFriends
-                .Where(x => x.IsActive == true && (x.FriendFromID == UserID || x.FriendToID == UserID))
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+
+            return await GetUserFriends.FromSql("EXEC CoQ.GetFriendsList @UserID", userParam)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -61,8 +71,9 @@ namespace CoQ.Domain.Repositories
         /// <returns>A list of all the user's liked games.</returns>
         public async Task<List<LikedGameModel>> GetLikedGame(int UserID)
         {
-            return await GetLikedGames
-                .Where(x => x.IsActive == true && (x.UserID == UserID))
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+
+            return await GetLikedGames.FromSql("EXEC CoQ.GetLikedGamesByUser @UserID", userParam)
                 .AsNoTracking()
                 .ToListAsync();
         }

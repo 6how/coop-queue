@@ -106,8 +106,7 @@ namespace coop_queue.Controllers
             FriendAddedOn = DateTime.Now.AddDays(-4),
             FriendFromID = 2,
             FriendToID = 3,
-            FriendshipID = 1,
-            IsActive = true
+            FriendshipID = 1
         };
 
         public FriendshipModel coleTest = new FriendshipModel
@@ -115,8 +114,7 @@ namespace coop_queue.Controllers
             FriendAddedOn = DateTime.Now.AddDays(-7),
             FriendFromID = 1,
             FriendToID = 2,
-            FriendshipID = 2,
-            IsActive = true
+            FriendshipID = 2
         };
 
         public GameModel haloMCC = new GameModel
@@ -137,37 +135,35 @@ namespace coop_queue.Controllers
             IsActive = true
         };
 
-        public LikedGameModel coleHalo = new LikedGameModel
-        {
-            LikedGameID = 1,
-            UserID = 2,
-            LikedOnDate = DateTime.Now.AddDays(-16),
-            Game = new GameModel
-            {
-                GameID = 1,
-                GameName = "Halo: The Master Chief Collection",
-                GameScore = 8,
-                GameSystem = "PC",
-                IsActive = true
-            },
-            IsActive = true
-        };
+        //public LikedGameModel coleHalo = new LikedGameModel
+        //{
+        //    LikedGameID = 1,
+        //    LikedOnDate = DateTime.Now.AddDays(-16),
+        //    Game = new GameModel
+        //    {
+        //        GameID = 1,
+        //        GameName = "Halo: The Master Chief Collection",
+        //        GameScore = 8,
+        //        GameSystem = "PC",
+        //        IsActive = true
+        //    },
+        //    IsActive = true
+        //};
 
-        public LikedGameModel coleLast = new LikedGameModel
-        {
-            LikedGameID = 2,
-            UserID = 2,
-            LikedOnDate = DateTime.Now.AddDays(-700),
-            Game = new GameModel
-            {
-                GameID = 2,
-                GameName = "The Last Of Us",
-                GameScore = 9.75,
-                GameSystem = "Playstation",
-                IsActive = true
-            },
-            IsActive = true
-        };
+        //public LikedGameModel coleLast = new LikedGameModel
+        //{
+        //    LikedGameID = 2,
+        //    LikedOnDate = DateTime.Now.AddDays(-700),
+        //    Game = new GameModel
+        //    {
+        //        GameID = 2,
+        //        GameName = "The Last Of Us",
+        //        GameScore = 9.75,
+        //        GameSystem = "Playstation",
+        //        IsActive = true
+        //    },
+        //    IsActive = true
+        //};
 
         #endregion
     }
