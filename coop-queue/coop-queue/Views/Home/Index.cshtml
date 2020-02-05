@@ -25,32 +25,51 @@
 
 <div style="padding: 20px;">
     <div class="newsfeedTop">
-        <div id="filtersBtn">
-            <b>Filter </b><i class="fas fa-filter"></i>
-        </div>
-        <div class="filtersScreen">
-            <div class="filtersScreenHeaders">Content Types</div>
-            <input type="checkbox" class="filterItems" value="alpha">Alpha<br>
-            <input type="checkbox" class="filterItems" value="preRelease">Pre-Release<br>
-            <input type="checkbox" class="filterItems" value="dlc">DLC<br>
 
-            <div class="filtersScreenHeaders">Price Ranges</div>
-            <input type="checkbox" class="filterItems" value="free">Free<br>
-            <input type="checkbox" class="filterItems" value="under5">Under $5<br>
-            <input type="checkbox" class="filterItems" value="under10">Under $10<br>
-            <input type="checkbox" id="filterItems" value="anyPrice">Any<br>
-        </div>
+        <div id="sortDrop">
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filters
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <form class="px-4 py-3">
+                        <h6 class="dropdown-header">Type:</h6>
+                        <div class="dropdown-divider"></div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label" for="dropdownCheck">
+                                Alpha
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label" for="dropdownCheck">
+                                Beta
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label" for="dropdownCheck">
+                                DLC
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                </div>
 
-        <div id="sortBtn">
-            <b>Order By </b><i class="fas fa-sort"></i>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort By
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">Title (A-Z)</button>
+                        <button class="dropdown-item" type="button">Title (Z-A)</button>
+                        <button class="dropdown-item" type="button">Rating (High-Low)</button>
+                        <button class="dropdown-item" type="button">Rating (Low-High)</button>
+                        <button class="dropdown-item" type="button">Price (Low-High)</button>
+                        <button class="dropdown-item" type="button">Price (High-Low)</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="sortScreen">
-            <a><div class="sortScreenItem">Title <i class="fas fa-sort-alpha-down"></i></div></a>
-            <a><div class="sortScreenItem">Title <i class="fas fa-sort-alpha-down-alt"></i></div></a>
-            <a><div class="sortScreenItem">Rating <i class="fas fa-thumbs-up"></i></div></a>
-            <a><div class="sortScreenItem">Rating <i class="fas fa-thumbs-down"></i></div></a>
-            <a><div class="sortScreenItem">Price <i class="fas fa-long-arrow-alt-up"></i></div></a>
-            <a><div class="sortScreenItem">Price <i class="fas fa-long-arrow-alt-down"></i></div></a>
-        </div>
-    </div>
 </div>
