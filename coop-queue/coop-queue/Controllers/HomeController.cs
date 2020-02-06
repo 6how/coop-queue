@@ -7,11 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using coop_queue.Models;
 using CoQ.Web.Models.ViewModels;
 using CoQ.Models.Models;
+using CoQ.Domain.Abstracts;
 
 namespace coop_queue.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ICoopQueue coopQueue;
+
+        public HomeController(ICoopQueue coopQueue)
+        {
+            this.coopQueue = coopQueue;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -32,21 +40,16 @@ namespace coop_queue.Controllers
             return View();
         }
 
-        public ActionResult Profile()
+        [HttpGet]
+        public async Task<ActionResult> Profile()
         {
-            List<FriendshipModel> testFriends = new List<FriendshipModel>();
-            testFriends.Add(coleAbdou);
-            testFriends.Add(coleTest);
-
-            List<LikedGameModel> testLikedGames = new List<LikedGameModel>();
-            testLikedGames.Add(coleHalo);
-            testLikedGames.Add(coleLast);
+            int UserID = 1;
 
             ProfileViewModel viewModel = new ProfileViewModel
             {
-                User = coleGlaser,
-                Friends = testFriends,
-                LikedGames = testLikedGames
+                User = await coopQueue.GetUserProfile(UserID),
+                Friends = await coopQueue.GetUserFriend(UserID),
+                LikedGames = await coopQueue.GetLikedGame(UserID)
             };
 
             return View(viewModel);
@@ -123,8 +126,7 @@ namespace coop_queue.Controllers
             FriendAddedOn = DateTime.Now.AddDays(-4),
             FriendFromID = 2,
             FriendToID = 3,
-            FriendshipID = 1,
-            IsActive = true
+            FriendshipID = 1
         };
 
         public FriendshipModel coleTest = new FriendshipModel
@@ -132,8 +134,7 @@ namespace coop_queue.Controllers
             FriendAddedOn = DateTime.Now.AddDays(-7),
             FriendFromID = 1,
             FriendToID = 2,
-            FriendshipID = 2,
-            IsActive = true
+            FriendshipID = 2
         };
 
         public GameModel haloMCC = new GameModel
@@ -154,37 +155,35 @@ namespace coop_queue.Controllers
             IsActive = true
         };
 
-        public LikedGameModel coleHalo = new LikedGameModel
-        {
-            LikedGameID = 1,
-            UserID = 2,
-            LikedOnDate = DateTime.Now.AddDays(-16),
-            Game = new GameModel
-            {
-                GameID = 1,
-                GameName = "Halo: The Master Chief Collection",
-                GameScore = 8,
-                GameSystem = "PC",
-                IsActive = true
-            },
-            IsActive = true
-        };
+        //public LikedGameModel coleHalo = new LikedGameModel
+        //{
+        //    LikedGameID = 1,
+        //    LikedOnDate = DateTime.Now.AddDays(-16),
+        //    Game = new GameModel
+        //    {
+        //        GameID = 1,
+        //        GameName = "Halo: The Master Chief Collection",
+        //        GameScore = 8,
+        //        GameSystem = "PC",
+        //        IsActive = true
+        //    },
+        //    IsActive = true
+        //};
 
-        public LikedGameModel coleLast = new LikedGameModel
-        {
-            LikedGameID = 2,
-            UserID = 2,
-            LikedOnDate = DateTime.Now.AddDays(-700),
-            Game = new GameModel
-            {
-                GameID = 2,
-                GameName = "The Last Of Us",
-                GameScore = 9.75,
-                GameSystem = "Playstation",
-                IsActive = true
-            },
-            IsActive = true
-        };
+        //public LikedGameModel coleLast = new LikedGameModel
+        //{
+        //    LikedGameID = 2,
+        //    LikedOnDate = DateTime.Now.AddDays(-700),
+        //    Game = new GameModel
+        //    {
+        //        GameID = 2,
+        //        GameName = "The Last Of Us",
+        //        GameScore = 9.75,
+        //        GameSystem = "Playstation",
+        //        IsActive = true
+        //    },
+        //    IsActive = true
+        //};
 
         #endregion
     }
