@@ -10,8 +10,4 @@
     <None Remove="Models\ViewModels\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

@@ -2,7 +2,106 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div style="padding: 20px;">
-        <h1>Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<script type="text/javascript">
+    function toggleDiv() {
+        var filtersScreen = document.getElementById("filtersScreen");
+        filtersScreen.style.display = filtersScreen.style.display === 'none' ? '' : 'none';
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#filtersBtn").click(function () {
+            $(".filtersScreen").toggle();
+        });
+
+        $("#sortBtn").click(function () {
+            $("#sortScreen").toggle();
+            $(".sortScreenItem").toggle();
+        });
+    });
+</script>
+
+
+<div style="padding: 20px;">
+    <div class="newsfeedTop">
+
+        <div id="sortDrop">
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filters
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <form class="px-4 py-3">
+                        <h6 class="dropdown-header">Type:</h6>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label" for="dropdownCheck">
+                                Alpha
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label" for="dropdownCheck">
+                                Beta
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label">
+                                DLC
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck" checked>
+                            <label class="form-check-label" for="dropdownCheck" checked="checked">
+                                All
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Price Range:</h6>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label" for="dropdownCheck">
+                                Free to Play
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label" for="dropdownCheck">
+                                Under $5
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label">
+                                Under $10
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck" checked>
+                            <label class="form-check-label" for="dropdownCheck" checked="checked">
+                                All
+                            </label>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort By
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button">Title (A-Z)</button>
+                    <button class="dropdown-item" type="button">Title (Z-A)</button>
+                    <button class="dropdown-item" type="button">Rating (High-Low)</button>
+                    <button class="dropdown-item" type="button">Rating (Low-High)</button>
+                    <button class="dropdown-item" type="button">Price (Low-High)</button>
+                    <button class="dropdown-item" type="button">Price (High-Low)</button>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
