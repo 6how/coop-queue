@@ -30,6 +30,16 @@ namespace coop_queue.Controllers
             return View();
         }
 
+        public ActionResult Preferences()
+        {
+            return View();
+        }
+
+        public ActionResult Settings()
+        {
+            return View();
+        }
+
         [HttpGet]
         public async Task<ActionResult> Profile()
         {
@@ -43,6 +53,16 @@ namespace coop_queue.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
         }
 
         public ActionResult Friends()
