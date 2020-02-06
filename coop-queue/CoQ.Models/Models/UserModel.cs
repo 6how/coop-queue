@@ -16,6 +16,6 @@ namespace CoQ.Models.Models
 
         public bool IsActive { get; set; }
 
-        // Image ?
+        public int? ImageID { get; set; }
     }
 }

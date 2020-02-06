@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Co-op Queue</title>
     <script src="https://kit.fontawesome.com/68e8903aea.js" crossorigin="anonymous"></script>
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -28,8 +29,8 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item" type="button">Settings</button>
-                    <button class="dropdown-item" type="button">Preferences</button>
+                    <a asp-controller="Home" asp-action="Settings"><button class="dropdown-item" type="button">Settings</button></a>
+                    <a asp-controller="Home" asp-action="Preferences"><button class="dropdown-item" type="button">Preferences</button></a>
                     <div class="dropdown-divider"></div>
                     <button class="dropdown-item" type="button" style="color: red;">Logout</button>
                 </div>

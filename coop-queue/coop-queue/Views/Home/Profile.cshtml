@@ -3,19 +3,39 @@
 }
 
 <div>
-    <div>
-        <div class="profileHeader"></div>
-        <div class="profilePhoto"></div>
-        <div class="userName"><b>Squanchy Squanch</b></div>
-        <div class="userBio">
-            I play a lot of squanching video games. Seriously, a squanching lot. <br />
-            I don't take any squanch but I'm always down for a good squanch. So hit me up if you're tryna squanch.
+        <div id="profilePageTop">
+            
+            <div class="profileHeader"></div>
+
+            <div id="bioCard">
+                <div id="topOfBioCard">
+                    <img src="~/css/squanchy.jpg" alt="squanchy" id="profilePhoto">
+                    <div id="online">
+                        <div id="onlineCircle"></div>
+                        <div id="onlineCircleOpacity"></div>
+                    </div>
+                    <div class="userName"><b>Squanchy Squanch</b></div>
+                </div>
+                <div id="bottomOfBioCard">
+                    <div id="bottomLeft">
+                        <button id="editProfileBtn">Edit Profile</button>
+                    </div>
+                    <div id="bottomRight">
+                        <div id="bioHeader">About Me:</div>
+                        <div class="userBio">
+                            I play a lot of squanching video games. Seriously, a squanching lot. 
+                            I don't take any squanch but I'm always down for a good squanch. So hit me up if you're tryna squanch.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button id="editProfileButton">Edit Profile</button>
+        
 
         <div class="profilePageContent">
+
             <div class="profileLikesSection" style="padding-left: 10px;">
-                <h3>Likes (1)</h3>
+                <h3>Likes (5)</h3>
                 <div class="divideLine"></div>
                 <div class="likesCard">
                     <img class="likesCardPhoto" resource="" />
@@ -57,5 +77,4 @@
             </div>
             <div class="likesThumbnails"></div>
         </div>
-    </div>
 </div>
