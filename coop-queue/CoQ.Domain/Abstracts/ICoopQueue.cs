@@ -30,5 +30,14 @@ namespace CoQ.Domain.Abstracts
         /// <param name="UserID">The user's identifier.</param>
         /// <returns>A list of all the user's liked games.</returns>
         Task<List<LikedGameModel>> GetLikedGame(int UserID);
+
+        /// <summary>
+        /// Gets the user's identifier for caching. NOTE: Uses the email address entered.
+        /// </summary>
+        /// <param name="emailAddress">The email address used to verify</param>
+        /// <returns>The user's identifer.</returns>
+        int GetUserID(string emailAddress);
+
+        SPCheckLoginCredentials GetCredentials(string enteredEmail, string enteredPassword);
     }
 }

@@ -1,6 +1,6 @@
-﻿using coop_queue.Data;
-using CoQ.Domain.Abstracts;
+﻿using CoQ.Domain.Abstracts;
 using CoQ.Domain.Repositories;
+using CoQ.Domain.Services;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -43,6 +43,8 @@ namespace coop_queue
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ICoopQueue, CoopQueueDB>();
+            services.AddTransient<CoQService>();
+            services.AddMemoryCache();
             services.AddReact();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

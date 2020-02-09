@@ -79,5 +79,7 @@
     <Build Include="CoQ\Stored Procedures\GetLikedGamesByUser.sql" />
     <Build Include="Security\CoQ.sql" />
     <Build Include="CoQ\Stored Procedures\GetUserAccount.sql" />
+    <Build Include="CoQ\Stored Procedures\GetUserID.sql" />
+    <Build Include="CoQ\Stored Procedures\CheckCredentials.sql" />
   </ItemGroup>
 </Project>

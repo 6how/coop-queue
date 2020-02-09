@@ -2,12 +2,10 @@
 using CoQ.Domain.Entities;
 using CoQ.Models.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoQ.Domain.Repositories
@@ -32,9 +30,16 @@ namespace CoQ.Domain.Repositories
         public virtual DbSet<FriendshipModel> GetUserFriends { get; set; }
 
         /// <summary>
+        /// Get the ID of the user for caching.
+        /// </summary>
+        public virtual DbSet<CacheUserIDModel> GetUsersID { get; set; }
+
+        /// <summary>
         /// Gets all of a user's liked games.
         /// </summary>
         public virtual DbSet<LikedGameModel> GetLikedGames { get; set; }
+
+        public virtual DbSet<SPCheckLoginCredentials> CheckCredentials { get; set; }
 
         /// <summary>
         /// Gets a user account for the profile page.
@@ -76,6 +81,32 @@ namespace CoQ.Domain.Repositories
             return await GetLikedGames.FromSql("EXEC CoQ.GetLikedGamesByUser @UserID", userParam)
                 .AsNoTracking()
                 .ToListAsync();
+        }
+
+        public int GetUserID(string emailAddress)
+        {
+            SqlParameter emailParam = new SqlParameter { ParameterName = "@EmailAddress", SqlDbType = SqlDbType.NVarChar, Value = emailAddress };
+
+            CacheUserIDModel result = GetUsersID.FromSql("EXEC CoQ.GetUserID @EmailAddress", emailParam)
+                .AsNoTracking()
+                .FirstOrDefault();
+
+            return result.UserID;
+        }
+
+        public SPCheckLoginCredentials GetCredentials(string enteredEmail, string enteredPassword)
+        {
+            List<SqlParameter> paramList = new List<SqlParameter>();
+
+            SqlParameter emailParam = new SqlParameter { ParameterName = "@EmailAddress", SqlDbType = SqlDbType.NVarChar, Value = enteredEmail };
+            SqlParameter passwordParam = new SqlParameter { ParameterName = "@Password", SqlDbType = SqlDbType.NVarChar, Value = enteredPassword };
+
+            paramList.Add(emailParam);
+            paramList.Add(passwordParam);
+
+            return CheckCredentials.FromSql("EXEC CoQ.CheckCredentials @EmailAddress, @Password", paramList.ToArray())
+                .AsNoTracking()
+                .FirstOrDefault();
         }
     }
 }

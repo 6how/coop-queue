@@ -1,23 +1,31 @@
-﻿using System;
+﻿using coop_queue.Models;
+using CoQ.Domain.Abstracts;
+using CoQ.Domain.Entities;
+using CoQ.Domain.Services;
+using CoQ.Models.Models;
+using CoQ.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using coop_queue.Models;
-using CoQ.Web.Models.ViewModels;
-using CoQ.Models.Models;
-using CoQ.Domain.Abstracts;
 
 namespace coop_queue.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ICoopQueue coopQueue;
+        private readonly CoQService coqService;
+        private readonly string userIdCacheKeyPrefix = "CurrentUser";
+        private IMemoryCache memoryCache;
+        private int UserID;
 
-        public HomeController(ICoopQueue coopQueue)
+        public HomeController(ICoopQueue coopQueue, CoQService coqService, IMemoryCache memoryCache)
         {
             this.coopQueue = coopQueue;
+            this.coqService = coqService;
+            this.memoryCache = memoryCache;
         }
 
         public ActionResult Index()
@@ -43,8 +51,6 @@ namespace coop_queue.Controllers
         [HttpGet]
         public async Task<ActionResult> Profile()
         {
-            int UserID = 1;
-
             ProfileViewModel viewModel = new ProfileViewModel
             {
                 User = await coopQueue.GetUserProfile(UserID),
@@ -60,14 +66,11 @@ namespace coop_queue.Controllers
             return View();
         }
 
-        public ActionResult Login()
+        public async Task<ActionResult> Friends()
         {
-            return View();
-        }
+            List<FriendshipModel> viewModel = await coopQueue.GetUserFriend(UserID);
 
-        public ActionResult Friends()
-        {
-            return View();
+            return View(viewModel);
         }
 
         public ActionResult Likes()
@@ -77,6 +80,26 @@ namespace coop_queue.Controllers
 
         public ActionResult Messages()
         {
+            return View();
+        }
+
+        public ActionResult Login(string enteredEmail = "glasercr@mail.uc.edu", string enteredPassword = "PASSWORD")
+        {
+            SPCheckLoginCredentials credentials = coopQueue.GetCredentials(enteredEmail, enteredPassword);
+
+            MemoryCache cache = new MemoryCache(new MemoryCacheOptions());
+
+            var key = $"{userIdCacheKeyPrefix}";
+            if (!cache.TryGetValue(key, out int userID))
+            {
+                var options = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(DateTime.Now.AddHours(1));
+
+                userID = coopQueue.GetUserID(credentials.EmailAddress);
+                this.UserID = userID;
+                cache.Set(key, userID, options);
+            }
+
             return View();
         }
 
