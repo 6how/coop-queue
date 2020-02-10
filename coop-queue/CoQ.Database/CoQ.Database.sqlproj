@@ -79,5 +79,9 @@
     <Build Include="CoQ\Stored Procedures\GetLikedGamesByUser.sql" />
     <Build Include="Security\CoQ.sql" />
     <Build Include="CoQ\Stored Procedures\GetUserAccount.sql" />
+    <Build Include="CoQ\Tables\UserRoles.sql" />
+    <Build Include="CoQ\Tables\UserClaims.sql" />
+    <Build Include="CoQ\Tables\Roles.sql" />
+    <Build Include="CoQ\Tables\RoleClaims.sql" />
   </ItemGroup>
 </Project>
