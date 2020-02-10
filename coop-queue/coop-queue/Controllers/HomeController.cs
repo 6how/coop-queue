@@ -74,9 +74,13 @@ namespace coop_queue.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Likes()
+        [HttpGet]
+        public async Task<ActionResult> Likes()
         {
-            return View();
+            int UserID = 1;
+            List<LikedGameModel> viewModel = await coopQueue.GetLikedGame(UserID);
+
+            return View(viewModel);
         }
 
         public ActionResult Messages()
