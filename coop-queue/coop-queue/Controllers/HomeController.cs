@@ -65,9 +65,13 @@ namespace coop_queue.Controllers
             return View();
         }
 
-        public ActionResult Friends()
+        [HttpGet]
+        public async Task<ActionResult> Friends()
         {
-            return View();
+            int UserID = 1;
+            List<FriendshipModel> viewModel = await coopQueue.GetUserFriend(UserID);
+
+            return View(viewModel);
         }
 
         public ActionResult Likes()
