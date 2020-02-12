@@ -1,9 +1,10 @@
-﻿CREATE PROCEDURE CoQ.[GetLikedGamesByUser] 
+﻿CREATE PROCEDURE [CoQ].[GetLikedGamesByUser] 
 	@UserID int
 AS
 
 SELECT 
 	lg.LikedGameID AS LikedGameID,
+	g.GameID,
 	g.GameName AS GameName,
 	g.GameScore AS Score,
 	gs.SystemName AS [System],

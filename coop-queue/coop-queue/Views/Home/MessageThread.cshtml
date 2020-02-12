@@ -1,53 +1,84 @@
-﻿@{
-    ViewData["Title"] = "Message Thread Page";
-}
-
-<div>
-    <div class="messagesSection">
-
-        <div class="dateStamp">
-            <div class="messageDate">January 6, 2018</div>
-            <div class="dateLines"></div>
-        </div>
-
-        <div class="newMessageLine">
-            <div class="friendPhotoByMessage"></div>
-            <div class="messageFromFriend">
-                You excited for Left for Dead 3?
-            </div>
-        </div>
-
-        <div class="newMessageLine">
-            <div class="userPhotoByMessage"></div>
-            <div class="messageFromUser">
-                Hell yes! You kidding?? lol
-            </div>
-        </div>
-
-        <div class="newMessageLine">
-            <div class="userPhotoByMessage"></div>
-            <div class="messageFromUser">
-                You see the new Call of Duty trailer? Looks pretty sweet... wanna play?
-            </div>
-        </div>
-
-        <div class="newMessageLine">
-            <div class="friendPhotoByMessage"></div>
-            <div class="messageFromFriend">
-                I can't today
-            </div>
-        </div>
-
-        <div class="newMessageLine">
-            <div class="friendPhotoByMessage"></div>
-            <div class="messageFromFriend">
-                You free at all this weekend?
-            </div>
+﻿@page
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <br />
         </div>
     </div>
-
-    <div class="typingMessageSection">
-        <input id="sendMessageField" />
-        <button id="sendMessageButton"><i class="fas fa-paper-plane"></i></button>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
     </div>
 </div>
+
+<div class="typingMessageSection">
+    <input id="messageInput" />
+    <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+</div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
+
+
+
+
+@* Bri's pre-existing stuff *@
+@*<div>
+        <div class="messagesSection">
+
+            <div class="dateStamp">
+                <div class="messageDate">January 6, 2018</div>
+                <div class="dateLines"></div>
+            </div>
+
+            <div class="newMessageLine">
+                <div class="friendPhotoByMessage"></div>
+                <div class="messageFromFriend">
+                    You excited for Left for Dead 3?
+                </div>
+            </div>
+
+            <div class="newMessageLine">
+                <div class="userPhotoByMessage"></div>
+                <div class="messageFromUser">
+                    Hell yes! You kidding?? lol
+                </div>
+            </div>
+
+            <div class="newMessageLine">
+                <div class="userPhotoByMessage"></div>
+                <div class="messageFromUser">
+                    You see the new Call of Duty trailer? Looks pretty sweet... wanna play?
+                </div>
+            </div>
+
+            <div class="newMessageLine">
+                <div class="friendPhotoByMessage"></div>
+                <div class="messageFromFriend">
+                    I can't today
+                </div>
+            </div>
+
+            <div class="newMessageLine">
+                <div class="friendPhotoByMessage"></div>
+                <div class="messageFromFriend">
+                    You free at all this weekend?
+                </div>
+            </div>
+        </div>
+
+        <div class="typingMessageSection">
+            <input id="sendMessageField" />
+            <button id="sendMessageButton"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>*@

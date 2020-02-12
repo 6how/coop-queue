@@ -5,8 +5,8 @@ using System.Text;
 
 namespace CoQ.Models.Models
 {
-    public class GameModel
-    {
+    public class FeedGameModel
+    {   
         [Key]
         public int GameID { get; set; }
 
@@ -14,10 +14,6 @@ namespace CoQ.Models.Models
 
         public int GameScore { get; set; }
 
-        public string GameSystem { get; set; }
-
-        public bool IsActive { get; set; }
-
-        // Image ?
+        public string SystemName { get; set; }
     }
 }
