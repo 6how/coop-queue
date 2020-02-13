@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE CoQ.GetUserAccount
+﻿CREATE PROCEDURE [CoQ].[GetUserAccount]
 	@UserID int
 AS
 
@@ -9,12 +9,12 @@ SELECT TOP(1)
 	u.UserDescription,
 	i.ImageName,
 	i.FileSize,
-	ib.Blob,
-	it.ImageTypeName
+	ib.Base64String,
+	it.ContentType
 
 FROM CoQ.Users u
 LEFT OUTER JOIN CoQ.[Image] i ON i.ImageID = u.ImageID
-LEFT OUTER JOIN CoQ.ImageBlob ib on ib.ImageID = i.ImageID
-LEFT OUTER JOIN CoQ.ImageType it on it.ImageTypeID = i.ImageTypeID
+LEFT OUTER JOIN CoQ.ImageBase64String ib on ib.ImageID = i.ImageID
+LEFT OUTER JOIN CoQ.ImageData it on it.ImageID = i.ImageID
 
 WHERE u.UserID = @UserID AND u.IsActive = 1

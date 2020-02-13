@@ -1,6 +1,6 @@
-﻿using coop_queue.Data;
-using CoQ.Domain.Abstracts;
+﻿using CoQ.Domain.Abstracts;
 using CoQ.Domain.Repositories;
+using CoQ.Web.Data;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +41,7 @@ namespace coop_queue
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedEmail = true)
                 .AddEntityFrameworkStores<CoopQueueDB>();
 
+            services.AddSignalR();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ICoopQueue, CoopQueueDB>();
             services.AddReact();
@@ -74,6 +75,11 @@ namespace coop_queue
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
             });
         }
     }

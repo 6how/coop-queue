@@ -10,6 +10,8 @@ namespace CoQ.Models.Models
         [Key]
         public int LikedGameID { get; set; }
 
+        public int GameID { get; set; }
+
         public string GameName { get; set; }
         
         public int Score { get; set; }
