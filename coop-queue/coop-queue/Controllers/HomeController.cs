@@ -136,16 +136,9 @@ namespace coop_queue.Controllers
             }
 
             ImageModel returnImage = await coopQueue.PostImage(image);
-            
-            return RedirectToAction("DisplayFile", "Home", returnImage);
-        }
+            string imageString = "data:" + returnImage.ContentType + ";base64," + returnImage.Base64String;
 
-        [HttpGet]
-        public ActionResult DisplayFile(ImageModel image)
-        {
-            string imageString = "data:" + image.ContentType + ";base64," + image.Base64String;
-
-            return RedirectToAction("TestView", imageString);
+            return RedirectToAction("TestView", "Home", new { imageString = imageString });
         }
 
         public ActionResult TestView(string imageString)
