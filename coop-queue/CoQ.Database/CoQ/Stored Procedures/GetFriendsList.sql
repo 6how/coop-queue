@@ -28,9 +28,13 @@ SELECT
 	f.FriendFromID AS FriendFromID,
 	f.FriendToID AS FriendToID,
 	f.AddedOn AS FriendAddedOn,
-	u.UserName AS FriendName
+	i.ImageName AS FriendImageName,
+	u.UserName AS FriendName,
+	ibs.Base64String AS FriendImagePath
 FROM #FriendshipInfo f
 LEFT JOIN CoQ.Users u ON (u.UserID = f.FriendFromID OR u.UserID = f.FriendToID)
+JOIN CoQ.Image i ON u.UserImageID = i.ImageID
+JOIN CoQ.ImageBase64String ibs ON u.UserImageID = ibs.ImageID
 WHERE u.UserID <> @UserID
 
 IF(OBJECT_ID('tempdb..#FriendshipInfo') IS NOT NULL)

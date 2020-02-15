@@ -16,7 +16,11 @@ namespace CoQ.Models.Models
 
         public DateTime FriendAddedOn { get; set; }
 
+        public string FriendImageName { get; set; }
+
         public string FriendName { get; set; }
+
+        public string FriendImagePath { get; set; }
 
         // Image ?
     }

@@ -50,6 +50,14 @@ namespace CoQ.Domain.Abstracts
         /// </summary>
         /// <param name="image">The object of the image to post.</param>
         /// <returns>The image object.</returns>
-        Task<ImageModel> PostImage(ImageModel image);
+        Task<ImageModel> PostImage(ImageModel image, int UserID);
+
+        /// <summary>
+        /// NOTE: THIS IS FOR ADMIN USE ONLY. USERS CANT ADD GAMES
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="GameID"></param>
+        /// <returns></returns>
+        Task<ImageModel> PostGameImage(ImageModel image, int GameID);
     }
 }

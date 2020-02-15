@@ -1,12 +1,4 @@
-﻿@model string
+﻿@using CoQ.Models.Models;
+@model ImageModel
 
-<img id="testImage" src="@Model" />
-
-@*<script>
-    $(function () {
-        var url = "@Url.Action("GetImage", "Home")";
-        $.get(url, function (data) {
-            $("#testImage-img").attr('src', data);
-        });
-    })
-</script>*@
+<img id="testImage" src="@Model.Base64String" />
