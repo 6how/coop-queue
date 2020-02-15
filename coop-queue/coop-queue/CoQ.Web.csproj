@@ -33,4 +33,15 @@
     <ProjectReference Include="..\CoQ.Models\CoQ.Models.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\images\20200214192124843hotsquidward.jpg" />
+    <None Include="wwwroot\images\20200214192209984abdou.jpeg" />
+  </ItemGroup>
+
 </Project>

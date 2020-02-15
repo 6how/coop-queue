@@ -28,7 +28,7 @@ namespace CoQ.Domain.Repositories
 
         public virtual DbSet<LikedGameModel> GetLikedGames { get; set; }
 
-        public virtual DbSet<FeedGameModel> GetFeedGames { get; set; }
+        public virtual DbSet<GameModel> GetFeedGames { get; set; }
         
         public virtual DbSet<GameModel> GetGames { get; set; }
 
@@ -83,7 +83,7 @@ namespace CoQ.Domain.Repositories
         /// </summary>
         /// <param name="UserID">The user's identifier.</param>
         /// <returns>A list of all the user's liked games.</returns>
-        public async Task<List<FeedGameModel>> GetFeedGame(int UserID)
+        public async Task<List<GameModel>> GetFeedGame(int UserID)
         {
             SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
 
@@ -113,18 +113,45 @@ namespace CoQ.Domain.Repositories
         /// </summary>
         /// <param name="image">The object of the image to post.</param>
         /// <returns>The image object.</returns>
-        public async Task<ImageModel> PostImage(ImageModel image)
+        public async Task<ImageModel> PostImage(ImageModel image, int UserID)
         {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
             SqlParameter nameParam = new SqlParameter { ParameterName = "@ImageName", SqlDbType = SqlDbType.NVarChar, Value = image.Name };
             SqlParameter sizeParam = new SqlParameter { ParameterName = "@ImageSize", SqlDbType = SqlDbType.Int, Value = image.FileSize };
             SqlParameter base64Param = new SqlParameter { ParameterName = "@ImageBase64", SqlDbType = SqlDbType.VarChar, Value = image.Base64String};
             SqlParameter contentParam = new SqlParameter { ParameterName = "@ContentType", SqlDbType = SqlDbType.NVarChar, Value = image.ContentType};
 
-            return await PostImages.FromSql("EXEC CoQ.PostImage @ImageName, @ImageSize, @ImageBase64, @ContentType",
-                new[] { nameParam,
-                sizeParam,
-                base64Param,
-                contentParam 
+            return await PostImages.FromSql("EXEC CoQ.PostImage @UserID, @ImageName, @ImageSize, @ImageBase64, @ContentType",
+                new[] { 
+                    userParam,
+                    nameParam,
+                    sizeParam,
+                    base64Param,
+                    contentParam 
+                }).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// NOTE: THIS IS FOR ADMIN USE ONLY. USERS CANT ADD GAMES
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="GameID"></param>
+        /// <returns></returns>
+        public async Task<ImageModel> PostGameImage(ImageModel image, int GameID)
+        {
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+            SqlParameter nameParam = new SqlParameter { ParameterName = "@ImageName", SqlDbType = SqlDbType.NVarChar, Value = image.Name };
+            SqlParameter sizeParam = new SqlParameter { ParameterName = "@ImageSize", SqlDbType = SqlDbType.Int, Value = image.FileSize };
+            SqlParameter base64Param = new SqlParameter { ParameterName = "@ImageBase64", SqlDbType = SqlDbType.VarChar, Value = image.Base64String };
+            SqlParameter contentParam = new SqlParameter { ParameterName = "@ContentType", SqlDbType = SqlDbType.NVarChar, Value = image.ContentType };
+
+            return await PostImages.FromSql("EXEC CoQ.PostImage @GameID, @ImageName, @ImageSize, @ImageBase64, @ContentType",
+                new[] {
+                    gameParam,
+                    nameParam,
+                    sizeParam,
+                    base64Param,
+                    contentParam
                 }).FirstOrDefaultAsync();
         }
     }

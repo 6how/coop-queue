@@ -7,13 +7,14 @@ SELECT TOP(1)
 	u.UserName,
 	u.Email,
 	u.UserDescription,
+	i.ImageID,
 	i.ImageName,
 	i.FileSize,
 	ib.Base64String,
 	it.ContentType
 
 FROM CoQ.Users u
-LEFT OUTER JOIN CoQ.[Image] i ON i.ImageID = u.ImageID
+LEFT OUTER JOIN CoQ.[Image] i ON i.ImageID = u.UserImageID
 LEFT OUTER JOIN CoQ.ImageBase64String ib on ib.ImageID = i.ImageID
 LEFT OUTER JOIN CoQ.ImageData it on it.ImageID = i.ImageID
 
