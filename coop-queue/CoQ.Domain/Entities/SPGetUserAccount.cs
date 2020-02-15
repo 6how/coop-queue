@@ -14,6 +14,8 @@ namespace CoQ.Domain.Entities
 
         public string UserDescription { get; set; }
 
+        public int? ImageID { get; set; }
+
         public string ImageName { get; set; }
 
         public Int64? FileSize { get; set; }

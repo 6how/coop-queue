@@ -13,6 +13,10 @@ namespace CoQ.Models.Models
         public int GameID { get; set; }
 
         public string GameName { get; set; }
+
+        public string ImageName { get; set; }
+
+        public string GameImagePath { get; set; }
         
         public int Score { get; set; }
 

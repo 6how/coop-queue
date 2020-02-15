@@ -1,80 +1,72 @@
-﻿@{
-    ViewData["Title"] = "Profile Page";
-}
+﻿@using CoQ.Web.Models.ViewModels
+@model ProfileViewModel
 
 <div>
-        <div id="profilePageTop">
-            
-            <div class="profileHeader"></div>
+    <div id="profilePageTop">
 
-            <div id="bioCard">
-                <div id="topOfBioCard">
-                    <img src="~/css/squanchy.jpg" alt="squanchy" id="profilePhoto">
-                    <div id="online">
-                        <div id="onlineCircle"></div>
-                        <div id="onlineCircleOpacity"></div>
-                    </div>
-                    <div class="userName"><b>Squanchy Squanch</b></div>
+        <div class="profileHeader"></div>
+
+        <div id="bioCard">
+            <div id="topOfBioCard">
+                <img src="~/images/@Model.User.ImageName" alt="@Model.User.ImageName" id="profilePhoto">
+                <div id="online">
+                    <div id="onlineCircle"></div>
+                    <div id="onlineCircleOpacity"></div>
                 </div>
-                <div id="bottomOfBioCard">
-                    <div id="bottomLeft">
-                        <button id="editProfileBtn">Edit Profile</button>
-                    </div>
-                    <div id="bottomRight">
-                        <div id="bioHeader">About Me:</div>
-                        <div class="userBio">
-                            I play a lot of squanching video games. Seriously, a squanching lot. 
-                            I don't take any squanch but I'm always down for a good squanch. So hit me up if you're tryna squanch.
-                        </div>
+                <div class="userName"><b>@Model.User.UserName</b></div>
+            </div>
+            <div id="bottomOfBioCard">
+                <div id="bottomLeft">
+                    <button id="editProfileBtn">Edit Profile</button>
+                </div>
+                <div id="bottomRight">
+                    <div id="bioHeader">About Me:</div>
+                    <div class="userBio">
+                        @Model.User.UserDescription
                     </div>
                 </div>
             </div>
         </div>
-        
+    </div>
 
-        <div class="profilePageContent">
+    <div class="profilePageContent">
 
+        @if (Model.LikedGames.Count > 0)
+        {
             <div class="profileLikesSection" style="padding-left: 10px;">
-                <h3>Likes (5)</h3>
+                <h3>Likes (@Model.LikedGames.Count)</h3>
                 <div class="divideLine"></div>
-                <div class="likesCard">
-                    <img class="likesCardPhoto" resource="" />
-                    <div class="likesCardName">Call of Duty: Modern Warefare</div>
-                </div>
-                <a>
-                    <div class="likesCard">
-                        <img class="likesCardPhoto" src="~/css/halo.jpg" />
-                        <div class="likesCardName">Halo</div>
-                    </div>
-                </a>
-                <a>
-                    <div class="likesCard">
-                        <img class="likesCardPhoto" src="~/css/7daystodie.jpg" />
-                        <div class="likesCardName">7 Days to Die</div>
-                    </div>
-                </a>
-                <a>
-                    <div class="likesCard">
-                        <img class="likesCardPhoto" src="~/css/rainbow6.jpg" />
-                        <div class="likesCardName">Rainbow6: Siege</div>
-                    </div>
-                </a>
-                <a>
-                    <div class="likesCard">
-                        <img class="likesCardPhoto" src="~/css/subnautica.png" />
-                        <div class="likesCardName">Subnautica</div>
-                    </div>
-                </a>
+                @foreach (var game in Model.LikedGames)
+                {
+                    <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID})'">
+
+                        <div class="likesCard">
+                            <img class="likesCardPhoto" src="~/images/@game.ImageName" />
+                            <div class="likesCardName"><b>@game.GameName</b> | @game.System</div>
+                        </div>
+                    </a>
+                }
             </div>
 
+        }
+
+        @if (Model.Friends.Count > 0)
+        {
             <div class="profileFriendSection" style="padding-left: 10px;">
-                <h3>Friends (1)</h3>
+                <h3>Friends (@Model.Friends.Count)</h3>
                 <div class="divideLine"></div>
-                <div class="friendCard">
-                    <img class="cardPhoto" resource="" />
-                    <div class="cardName">Rick Sanchez</div>
-                </div>
+                @foreach (var friend in Model.Friends)
+                {
+                    <a onclick="location.href = '@Url.Action("UserDetails", "Home", new { UserID = friend.OtherFriendID})'">
+                        <div class="friendCard">
+                            <img class="cardPhoto" src="~/images/@friend.FriendImageName" />
+                            <div class="cardName">@friend.FriendName</div>
+                        </div>
+                    </a>
+                }
             </div>
-            <div class="likesThumbnails"></div>
-        </div>
+
+        }
+        <div class="likesThumbnails"></div>
+    </div>
 </div>

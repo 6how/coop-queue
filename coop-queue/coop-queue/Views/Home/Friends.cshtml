@@ -6,9 +6,9 @@
     <div class="divideLine"></div>
     @foreach (FriendshipModel friend in Model)
     {
-        <a asp-controller="Home" asp-action="Profile">
+        <a onclick="location.href = '@Url.Action("UserDetails", "Home", new { UserID = friend.OtherFriendID})'">
             <div class="friendCard">
-                <img class="cardPhoto" resource="" />
+                <img class="cardPhoto" src="~/images/@friend.FriendImageName" />
                 <div class="cardName">@friend.FriendName</div>
             </div>
         </a>

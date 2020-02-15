@@ -1,6 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using CoQ.Models.Models
+@model List<GameModel>
 
 <script type="text/javascript">
     function toggleDiv() {
@@ -104,4 +103,18 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="profileLikesSection" id="gameFeed" style="padding-left: 10px;">
+    <h3>Queued Games (@Model.Count)</h3>
+    <div class="divideLine"></div>
+    @foreach (var game in Model)
+    {
+        <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID})'">
+            <div class="likesCard">
+                <img class="likesCardPhoto" src="~/images/@game.ImageName" />
+                <div class="likesCardName"><b>@game.GameName</b> | @game.System</div>
+            </div>
+        </a>
+    }
 </div>

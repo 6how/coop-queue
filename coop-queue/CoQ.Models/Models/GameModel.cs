@@ -12,12 +12,12 @@ namespace CoQ.Models.Models
 
         public string GameName { get; set; }
 
-        public int GameScore { get; set; }
+        public string GameDescription { get; set; }
 
-        public string GameSystem { get; set; }
+        public string ImageName { get; set; }
 
-        public bool IsActive { get; set; }
+        public int Score { get; set; }
 
-        // Image ?
+        public string System { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace CoQ.Domain.Abstracts
         /// </summary>
         /// <param name="UserID">The user's identifier.</param>
         /// <returns>A list of all the user's liked games.</returns>
-        Task<List<FeedGameModel>> GetFeedGame(int UserID);
+        Task<List<GameModel>> GetFeedGame(int UserID);
 
         /// <summary>
         /// Gets a game based off an ID.
@@ -46,10 +46,46 @@ namespace CoQ.Domain.Abstracts
         Task<GameModel> GetGameByID(int GameID);
 
         /// <summary>
+        /// Gets all news for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of news for the given game.</returns>
+        Task<List<GameNews>> GetNewsByID(int GameID);
+
+        /// <summary>
+        /// Gets all reviews for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of reviews for the given game.</returns>
+        Task<List<GameReview>> GetReviewsByID(int GameID);
+
+        /// <summary>
+        /// Gets all screenshots for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of screenshots for the given game.</returns>
+        Task<List<GameScreenshot>> GetScreenshotsByID(int GameID);
+
+        /// <summary>
+        /// Gets all trailers for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of trailers for the given game.</returns>
+        Task<List<GameTrailer>> GetTrailersByID(int GameID);
+
+        /// <summary>
         /// Posts an uploaded image.
         /// </summary>
         /// <param name="image">The object of the image to post.</param>
         /// <returns>The image object.</returns>
-        Task<ImageModel> PostImage(ImageModel image);
+        Task<ImageModel> PostImage(ImageModel image, int UserID);
+
+        /// <summary>
+        /// NOTE: THIS IS FOR ADMIN USE ONLY. USERS CANT ADD GAMES
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="GameID"></param>
+        /// <returns></returns>
+        Task<ImageModel> PostGameImage(ImageModel image, int GameID);
     }
 }

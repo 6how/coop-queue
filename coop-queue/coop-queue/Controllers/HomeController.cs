@@ -31,7 +31,7 @@ namespace coop_queue.Controllers
         {
             int UserID = 1;
 
-            List<FeedGameModel> viewModel = await coopQueue.GetFeedGame(UserID);
+            List<GameModel> viewModel = await coopQueue.GetFeedGame(UserID);
 
             return View(viewModel);
         }
@@ -106,7 +106,27 @@ namespace coop_queue.Controllers
 
         public async Task<ActionResult> GameDetails(int GameID)
         {
-            GameModel viewModel = await coopQueue.GetGameByID(GameID);
+            GameModel gameModel = await coopQueue.GetGameByID(GameID);
+
+            GameDetailsViewModel viewModel = new GameDetailsViewModel
+            {
+                GameModel = gameModel,
+                News = await coopQueue.GetNewsByID(GameID),
+                Reviews = await coopQueue.GetReviewsByID(GameID),
+                Screenshots = await coopQueue.GetScreenshotsByID(GameID),
+                Trailers = await coopQueue.GetTrailersByID(GameID)
+            };
+
+            return View(viewModel);
+        }
+
+        public async Task<ActionResult> UserDetails(int UserID)
+        {
+            ProfileViewModel viewModel = new ProfileViewModel
+            {
+                User = await coopQueue.GetUserProfile(UserID),
+                LikedGames = await coopQueue.GetLikedGame(UserID)
+            };
 
             return View(viewModel);
         }
@@ -119,31 +139,34 @@ namespace coop_queue.Controllers
         [HttpPost]
         public async Task<ActionResult> UploadFile()
         {
+            int UserID = 1;
+
             IFormFile file = Request.Form.Files[0];
-            string filePath = Path.Combine(Path.Combine(hostingEnvironment.WebRootPath, "upload"), file.FileName);
+            string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + file.FileName;
+            string filePath = Path.Combine(Path.Combine(hostingEnvironment.WebRootPath, "images"), fileName);
 
-            ImageModel image = new ImageModel();
-
-            using(var stream = new MemoryStream())
+            using (var fileStream  = new FileStream(filePath, FileMode.Create))
             {
-                await file.CopyToAsync(stream);
-                byte[] imageBytes = stream.ToArray();
-
-                image.Base64String = Convert.ToBase64String(imageBytes);
-                image.Name = file.FileName;
-                image.FileSize = file.Length;
-                image.ContentType = file.ContentType;
+                await file.CopyToAsync(fileStream);
             }
 
-            ImageModel returnImage = await coopQueue.PostImage(image);
-            string imageString = "data:" + returnImage.ContentType + ";base64," + returnImage.Base64String;
+            ImageModel image = new ImageModel
+            {
+                Base64String = filePath,
+                ContentType = file.ContentType,
+                FileSize = file.Length,
+                Name = fileName
+            };
 
-            return RedirectToAction("TestView", "Home", new { imageString = imageString });
+            // Using the return image object to have the ID.
+            ImageModel returnImage = await coopQueue.PostImage(image, UserID);
+
+            return RedirectToAction("TestView", "Home", returnImage);
         }
 
-        public ActionResult TestView(string imageString)
+        public ActionResult TestView(ImageModel image)
         {
-            return View(imageString);
+            return View(image);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

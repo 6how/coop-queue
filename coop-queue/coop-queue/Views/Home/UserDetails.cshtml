@@ -1,0 +1,50 @@
+﻿@using CoQ.Web.Models.ViewModels
+@model ProfileViewModel
+
+<div>
+    <div id="profilePageTop">
+
+        <div class="profileHeader"></div>
+
+        <div id="bioCard">
+            <div id="topOfBioCard">
+                <img src="~/images/@Model.User.ImageName" alt="@Model.User.ImageName" id="profilePhoto">
+                <div id="online">
+                    <div id="onlineCircle"></div>
+                    <div id="onlineCircleOpacity"></div>
+                </div>
+                <div class="userName"><b>@Model.User.UserName</b></div>
+            </div>
+            <div id="bottomOfBioCard">
+                <div id="bottomLeft">
+                    <button id="editProfileBtn">Edit Profile</button>
+                </div>
+                <div id="bottomRight">
+                    <div id="bioHeader">About Me:</div>
+                    <div class="userBio">
+                        @Model.User.UserDescription
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profilePageContent">
+
+        @if (Model.LikedGames.Count > 0)
+        {
+            <div class="profileLikesSection" style="padding-left: 10px;">
+                <h3>Likes (@Model.LikedGames.Count)</h3>
+                <div class="divideLine"></div>
+                @foreach (var game in Model.LikedGames)
+                {
+                    <div class="likesCard">
+                        <img class="likesCardPhoto" src="~/images/@game.ImageName" />
+                        <div class="likesCardName"><b>@game.GameName</b> | @game.System</div>
+                    </div>
+                }
+            </div>
+        }
+        <div class="likesThumbnails"></div>
+    </div>
+</div>
