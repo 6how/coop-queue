@@ -93,7 +93,7 @@ for details on configuring this project to bundle and minify static web assets. 
     display: inline-block;
     top: 55px;
     z-index: 5;
-    width: 220px;
+    width: 15vw;
     height: calc(100vh - 55px);
     background-color: #292929;
 }
@@ -101,22 +101,21 @@ for details on configuring this project to bundle and minify static web assets. 
 .mainContent {
     display: inline-block;
     position: relative;
-    width: calc(100vw - 220px);
-    min-height: calc(100vh - 55px);
-    left: 220px;
+    width: calc(100vw - 15vw);
+    left: 15vw;
     top: 55px;
     background-color: #f3f3f3;
 }
 
 .leftNavMenuItem {
     display: block;
-    width: 200px;
+    width: 14vw;
     height: 40px;
     padding-top: 3px;
     padding-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 20px;
-    margin: 10px 10px 0px 10px;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin: .5vw .5vw 0px .5vw;
     font-size: 16pt;
     text-align: left;
     text-decoration: none;
@@ -450,25 +449,25 @@ for details on configuring this project to bundle and minify static web assets. 
 /*Profile Page*/
 #profilePageTop {
     position: relative;
-    width: calc(100vw - 220px);
+    width: calc(100vw - 15vw);
     height: 38vh;
 }
 
 .profileHeader {
     position: relative;
     z-index: 1;
-    width: calc(100vw - 220px);
+    width: calc(100vw - 15vw);
     height: 30vh;
     background-color: #373737;
 }
 
 #bioCard {
-    position: fixed;
+    position: relative;
     z-index: 2;
-    top: 15vh;
+    top: 12vh;
     left: 38vh;
-    right: 20vh;
     height: 300px;
+    width: calc(100% - 46vh);
 }
 
 #topOfBioCard {
@@ -495,7 +494,7 @@ for details on configuring this project to bundle and minify static web assets. 
 img#profilePhoto {
     position: fixed;
     z-index: 3;
-    top: 10vh;
+    top: 12vh;
     left: 40.5vh;
     width: 20vh;
     height: 20vh;
@@ -513,7 +512,7 @@ img#profilePhoto {
     display: inherit;
     position: fixed;
     z-index: 5;
-    top: 27.25vh;
+    top: 29.25vh;
     left: 40vh;
     width: 3vh;
     height: 3vh;
@@ -530,7 +529,7 @@ img#profilePhoto {
     display: inherit;
     position: fixed;
     z-index: 4;
-    top: 26.61vh;
+    top: 28.61vh;
     left: 39.37vh;
     width: 4.25vh;
     height: 4.25vh;
