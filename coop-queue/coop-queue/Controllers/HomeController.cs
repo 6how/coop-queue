@@ -31,7 +31,7 @@ namespace coop_queue.Controllers
         {
             int UserID = 1;
 
-            List<FeedGameModel> viewModel = await coopQueue.GetFeedGame(UserID);
+            List<GameModel> viewModel = await coopQueue.GetFeedGame(UserID);
 
             return View(viewModel);
         }
@@ -111,6 +111,17 @@ namespace coop_queue.Controllers
             return View(viewModel);
         }
 
+        public async Task<ActionResult> UserDetails(int UserID)
+        {
+            ProfileViewModel viewModel = new ProfileViewModel
+            {
+                User = await coopQueue.GetUserProfile(UserID),
+                LikedGames = await coopQueue.GetLikedGame(UserID)
+            };
+
+            return View(viewModel);
+        }
+
         public ActionResult UploadTest()
         {
             return View();
@@ -119,7 +130,7 @@ namespace coop_queue.Controllers
         [HttpPost]
         public async Task<ActionResult> UploadFile()
         {
-            int GameID = 5;
+            int UserID = 1;
 
             IFormFile file = Request.Form.Files[0];
             string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + file.FileName;
@@ -139,7 +150,7 @@ namespace coop_queue.Controllers
             };
 
             // Using the return image object to have the ID.
-            ImageModel returnImage = await coopQueue.PostGameImage(image, GameID);
+            ImageModel returnImage = await coopQueue.PostImage(image, UserID);
 
             return RedirectToAction("TestView", "Home", returnImage);
         }

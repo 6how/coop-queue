@@ -30,6 +30,7 @@ SELECT
 	f.AddedOn AS FriendAddedOn,
 	i.ImageName AS FriendImageName,
 	u.UserName AS FriendName,
+	u.UserID AS OtherFriendID,
 	ibs.Base64String AS FriendImagePath
 FROM #FriendshipInfo f
 LEFT JOIN CoQ.Users u ON (u.UserID = f.FriendFromID OR u.UserID = f.FriendToID)

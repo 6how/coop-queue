@@ -36,7 +36,7 @@ namespace CoQ.Domain.Abstracts
         /// </summary>
         /// <param name="UserID">The user's identifier.</param>
         /// <returns>A list of all the user's liked games.</returns>
-        Task<List<FeedGameModel>> GetFeedGame(int UserID);
+        Task<List<GameModel>> GetFeedGame(int UserID);
 
         /// <summary>
         /// Gets a game based off an ID.

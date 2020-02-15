@@ -28,7 +28,7 @@ namespace CoQ.Domain.Repositories
 
         public virtual DbSet<LikedGameModel> GetLikedGames { get; set; }
 
-        public virtual DbSet<FeedGameModel> GetFeedGames { get; set; }
+        public virtual DbSet<GameModel> GetFeedGames { get; set; }
         
         public virtual DbSet<GameModel> GetGames { get; set; }
 
@@ -83,7 +83,7 @@ namespace CoQ.Domain.Repositories
         /// </summary>
         /// <param name="UserID">The user's identifier.</param>
         /// <returns>A list of all the user's liked games.</returns>
-        public async Task<List<FeedGameModel>> GetFeedGame(int UserID)
+        public async Task<List<GameModel>> GetFeedGame(int UserID)
         {
             SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
 

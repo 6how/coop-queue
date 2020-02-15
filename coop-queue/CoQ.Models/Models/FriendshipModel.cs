@@ -20,8 +20,8 @@ namespace CoQ.Models.Models
 
         public string FriendName { get; set; }
 
-        public string FriendImagePath { get; set; }
+        public int OtherFriendID { get; set; }
 
-        // Image ?
+        public string FriendImagePath { get; set; }
     }
 }

@@ -2,50 +2,14 @@
 @model List<LikedGameModel>
 
     <div style="padding: 20px;">
-        <h1>Likes (5)</h1>
+        <h1>Likes (@Model.Count)</h1>
         <div class="divideLine"></div>
-        <a>
-            <div class="likesCard">
-                <img class="likesCardPhoto" resource="" />
-                <div class="likesCardName">Call of Duty: Modern Warfare</div>
-            </div>
-        </a>
-
-        <a>
-            <div class="likesCard">
-                <img class="likesCardPhoto" src="~/css/halo.jpg" />
-                <div class="likesCardName">Halo</div>
-            </div>
-        </a>
-
-        <a>
-            <div class="likesCard">
-                <img class="likesCardPhoto" src="~/css/7daystodie.jpg" />
-                <div class="likesCardName">7 Days to Die</div>
-            </div>
-        </a>
-
-        <a>
-            <div class="likesCard">
-                <img class="likesCardPhoto" src="~/css/rainbow6.jpg" />
-                <div class="likesCardName">Rainbow6: Siege</div>
-            </div>
-        </a>
-
-        <a>
-            <div class="likesCard">
-                <img class="likesCardPhoto" src="~/css/subnautica.png" />
-                <div class="likesCardName">Subnautica</div>
-            </div>
-        </a>
-
-        @* End of dummy data *@
 
         @foreach (LikedGameModel game in Model)
         {
             <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID})'">
                 <div class="likesCard" id="@game.GameID">
-                    <img class="likesCardPhoto" src="~/css/subnautica.png" />
+                    <img class="likesCardPhoto" src="~/images/@game.ImageName" />
                     <div class="likesCardName">@game.GameName</div>
                 </div>
             </a>
