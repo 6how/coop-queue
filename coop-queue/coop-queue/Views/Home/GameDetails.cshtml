@@ -61,18 +61,6 @@
             }
         </div>
 
-        @if (Model.Screenshots.Count > 0)
-        {
-            <div class="profileLikesSection" style="padding-left: 10px;">
-                <h3>Screenshots</h3>
-                <div class="divideLine"></div>
-                @foreach (var screenshot in Model.Screenshots)
-                {
-                    <img src="~/images/@screenshot.MediaURL">
-                }
-            </div>
-        }
-
         @if (Model.Trailers.Count > 0)
         {
             <div class="profileLikesSection" style="padding-left: 10px;">
@@ -85,6 +73,18 @@
                         encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                     </iframe>
+                }
+            </div>
+        }
+
+        @if (Model.Screenshots.Count > 0)
+        {
+            <div class="profileLikesSection" style="padding-left: 10px;">
+                <h3>Screenshots</h3>
+                <div class="divideLine"></div>
+                @foreach (var screenshot in Model.Screenshots)
+                {
+                    <img src="~/images/@screenshot.MediaURL">
                 }
             </div>
         }

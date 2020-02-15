@@ -153,7 +153,7 @@ namespace CoQ.Domain.Repositories
                 .ToListAsync();
         }
 
-        /// <summary>
+                /// <summary>
         /// Gets all trailers for a game based off ID.
         /// </summary>
         /// <param name="GameID">The ID of the game.</param>
