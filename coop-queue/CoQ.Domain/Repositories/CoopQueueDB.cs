@@ -2,12 +2,9 @@
 using CoQ.Domain.Entities;
 using CoQ.Models.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoQ.Domain.Repositories
@@ -31,6 +28,14 @@ namespace CoQ.Domain.Repositories
         public virtual DbSet<GameModel> GetFeedGames { get; set; }
         
         public virtual DbSet<GameModel> GetGames { get; set; }
+
+        public virtual DbSet<GameNews> GetNews { get; set; }
+
+        public virtual DbSet<GameReview> GetReviews { get; set; }
+
+        public virtual DbSet<GameScreenshot> GetScreenshots { get; set; }
+
+        public virtual DbSet<GameTrailer> GetTrailers { get; set; }
 
         public virtual DbSet<ImageModel> PostImages { get; set; }
 
@@ -104,6 +109,62 @@ namespace CoQ.Domain.Repositories
             return await GetGames.FromSql("EXEC CoQ.GetGameByID @GameID", gameParam)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// Gets all news for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of news for the given game.</returns>
+        public async Task<List<GameNews>> GetNewsByID(int GameID)
+        {
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await GetNews.FromSql("Exec CoQ.GetNewsByID @GameID", gameParam)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        /// <summary>
+        /// Gets all reviews for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of reviews for the given game.</returns>
+        public async Task<List<GameReview>> GetReviewsByID(int GameID)
+        {
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await GetReviews.FromSql("Exec CoQ.GetReviewsByID @GameID", gameParam)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        /// <summary>
+        /// Gets all screenshots for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of screenshots for the given game.</returns>
+        public async Task<List<GameScreenshot>> GetScreenshotsByID(int GameID)
+        {
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await GetScreenshots.FromSql("Exec CoQ.GetScreenshotsByID @GameID", gameParam)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+                /// <summary>
+        /// Gets all trailers for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of trailers for the given game.</returns>
+        public async Task<List<GameTrailer>> GetTrailersByID(int GameID)
+        {
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await GetTrailers.FromSql("Exec CoQ.GetTrailersByID @GameID", gameParam)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         #endregion

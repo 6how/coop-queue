@@ -87,5 +87,10 @@
     <Build Include="CoQ\Tables\ImageData.sql" />
     <Build Include="CoQ\Tables\ImageBase64String.sql" />
     <Build Include="CoQ\Stored Procedures\PostGameImage.sql" />
+    <Build Include="CoQ\Tables\MediaLinks.sql" />
+    <Build Include="CoQ\Stored Procedures\GetTrailersByID.sql" />
+    <Build Include="CoQ\Stored Procedures\GetScreenshotsByID.sql" />
+    <Build Include="CoQ\Stored Procedures\GetReviewsByID.sql" />
+    <Build Include="CoQ\Stored Procedures\GetNewsByID.sql" />
   </ItemGroup>
 </Project>

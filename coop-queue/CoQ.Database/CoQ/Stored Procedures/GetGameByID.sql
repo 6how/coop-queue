@@ -3,6 +3,7 @@
 SELECT TOP(1)
 	g.GameID,
 	g.GameName,
+	g.GameDescription,
 	i.ImageName,
 	g.GameScore AS Score,
 	gs.SystemName AS System

@@ -106,7 +106,16 @@ namespace coop_queue.Controllers
 
         public async Task<ActionResult> GameDetails(int GameID)
         {
-            GameModel viewModel = await coopQueue.GetGameByID(GameID);
+            GameModel gameModel = await coopQueue.GetGameByID(GameID);
+
+            GameDetailsViewModel viewModel = new GameDetailsViewModel
+            {
+                GameModel = gameModel,
+                News = await coopQueue.GetNewsByID(GameID),
+                Reviews = await coopQueue.GetReviewsByID(GameID),
+                Screenshots = await coopQueue.GetScreenshotsByID(GameID),
+                Trailers = await coopQueue.GetTrailersByID(GameID)
+            };
 
             return View(viewModel);
         }
