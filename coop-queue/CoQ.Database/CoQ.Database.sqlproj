@@ -70,8 +70,6 @@
     <Build Include="CoQ\Tables\Messages.sql" />
     <Build Include="CoQ\Tables\Users.sql" />
     <Build Include="CoQ\Tables\Image.sql" />
-    <Build Include="CoQ\Tables\ImageBlob.sql" />
-    <Build Include="CoQ\Tables\ImageType.sql" />
     <Build Include="CoQ\Tables\tempUsers.sql" />
     <Build Include="CoQ\Tables\LikedGames.sql" />
     <Build Include="CoQ\Stored Procedures\AddUserFromTempUsers.sql" />
@@ -79,5 +77,16 @@
     <Build Include="CoQ\Stored Procedures\GetLikedGamesByUser.sql" />
     <Build Include="Security\CoQ.sql" />
     <Build Include="CoQ\Stored Procedures\GetUserAccount.sql" />
+    <Build Include="CoQ\Tables\UserRoles.sql" />
+    <Build Include="CoQ\Tables\UserClaims.sql" />
+    <Build Include="CoQ\Tables\Roles.sql" />
+    <Build Include="CoQ\Tables\RoleClaims.sql" />
+    <Build Include="CoQ\Stored Procedures\GetUserID.sql" />
+    <Build Include="CoQ\Stored Procedures\GetFeedForUser.sql" />
+    <Build Include="CoQ\Stored Procedures\CheckCredentials.sql" />
+    <Build Include="CoQ\Stored Procedures\GetGameByID.sql" />
+    <Build Include="CoQ\Stored Procedures\PostImage.sql" />
+    <Build Include="CoQ\Tables\ImageData.sql" />
+    <Build Include="CoQ\Tables\ImageBase64String.sql" />
   </ItemGroup>
 </Project>

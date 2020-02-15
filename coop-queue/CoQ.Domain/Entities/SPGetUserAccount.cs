@@ -18,8 +18,8 @@ namespace CoQ.Domain.Entities
 
         public Int64? FileSize { get; set; }
 
-        public string Blob { get; set; }
+        public string Base64String { get; set; }
 
-        public string ImageTypeName { get; set; }
+        public string ContentType { get; set; }
     }
 }

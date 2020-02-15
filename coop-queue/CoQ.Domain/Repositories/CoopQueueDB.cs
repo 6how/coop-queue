@@ -21,20 +21,20 @@ namespace CoQ.Domain.Repositories
         {
             modelBuilder.HasDefaultSchema("CoQ");
         }
-        /// <summary>
-        /// Gets a user account.
-        /// </summary>
+
         public virtual DbSet<SPGetUserAccount> GetUserAccount { get; set; }
 
-        /// <summary>
-        /// Gets all of a user's friends.
-        /// </summary>
         public virtual DbSet<FriendshipModel> GetUserFriends { get; set; }
 
-        /// <summary>
-        /// Gets all of a user's liked games.
-        /// </summary>
         public virtual DbSet<LikedGameModel> GetLikedGames { get; set; }
+
+        public virtual DbSet<FeedGameModel> GetFeedGames { get; set; }
+        
+        public virtual DbSet<GameModel> GetGames { get; set; }
+
+        public virtual DbSet<ImageModel> PostImages { get; set; }
+
+        #region Gets
 
         /// <summary>
         /// Gets a user account for the profile page.
@@ -76,6 +76,56 @@ namespace CoQ.Domain.Repositories
             return await GetLikedGames.FromSql("EXEC CoQ.GetLikedGamesByUser @UserID", userParam)
                 .AsNoTracking()
                 .ToListAsync();
+        }
+
+        /// <summary>
+        /// Gets all games that will show up on the user's feed.
+        /// </summary>
+        /// <param name="UserID">The user's identifier.</param>
+        /// <returns>A list of all the user's liked games.</returns>
+        public async Task<List<FeedGameModel>> GetFeedGame(int UserID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+
+            return await GetFeedGames.FromSql("EXEC CoQ.GetFeedForUser @UserID", userParam)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        /// <summary>
+        /// Gets a game based off an ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game to get.</param>
+        /// <returns>The GameModel object of the game.</returns>
+        public async Task<GameModel> GetGameByID(int GameID)
+        {
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await GetGames.FromSql("EXEC CoQ.GetGameByID @GameID", gameParam)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Posts an uploaded image.
+        /// </summary>
+        /// <param name="image">The object of the image to post.</param>
+        /// <returns>The image object.</returns>
+        public async Task<ImageModel> PostImage(ImageModel image)
+        {
+            SqlParameter nameParam = new SqlParameter { ParameterName = "@ImageName", SqlDbType = SqlDbType.NVarChar, Value = image.Name };
+            SqlParameter sizeParam = new SqlParameter { ParameterName = "@ImageSize", SqlDbType = SqlDbType.Int, Value = image.FileSize };
+            SqlParameter base64Param = new SqlParameter { ParameterName = "@ImageBase64", SqlDbType = SqlDbType.VarChar, Value = image.Base64String};
+            SqlParameter contentParam = new SqlParameter { ParameterName = "@ContentType", SqlDbType = SqlDbType.NVarChar, Value = image.ContentType};
+
+            return await PostImages.FromSql("EXEC CoQ.PostImage @ImageName, @ImageSize, @ImageBase64, @ContentType",
+                new[] { nameParam,
+                sizeParam,
+                base64Param,
+                contentParam 
+                }).FirstOrDefaultAsync();
         }
     }
 }

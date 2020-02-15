@@ -5,6 +5,10 @@
     [GameSystemID] INT            NOT NULL,
     [GameImageID]  INT            NULL,
     [IsActive]     BIT            NOT NULL,
-    PRIMARY KEY CLUSTERED ([GameID] ASC)
+    PRIMARY KEY CLUSTERED ([GameID] ASC),
+    CONSTRAINT [FK_Games_GameSystem] FOREIGN KEY ([GameSystemID]) REFERENCES [CoQ].[GameSystem] ([GameSystemID]),
+    CONSTRAINT [FK_Games_Image] FOREIGN KEY ([GameImageID]) REFERENCES [CoQ].[Image] ([ImageID])
 );
+
+
 

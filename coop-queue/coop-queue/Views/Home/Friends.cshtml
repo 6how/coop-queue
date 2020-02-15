@@ -1,14 +1,16 @@
-﻿@{
-    ViewData["Title"] = "Friends Page";
-}
+﻿@using CoQ.Models.Models;
+@model List<FriendshipModel>
 
-<div  style="padding: 20px;">
-    <h1>Friends (1)</h1>
+<div style="padding: 20px;">
+    <h1>Friends (@Model.Count)</h1>
     <div class="divideLine"></div>
-    <a asp-controller="Home" asp-action="Profile">
-        <div class="friendCard">
-            <img class="cardPhoto" resource="" />
-            <div class="cardName">Rick Sanchez</div>
-        </div>
-    </a>
+    @foreach (FriendshipModel friend in Model)
+    {
+        <a asp-controller="Home" asp-action="Profile">
+            <div class="friendCard">
+                <img class="cardPhoto" resource="" />
+                <div class="cardName">@friend.FriendName</div>
+            </div>
+        </a>
+    }
 </div>

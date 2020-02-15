@@ -30,5 +30,26 @@ namespace CoQ.Domain.Abstracts
         /// <param name="UserID">The user's identifier.</param>
         /// <returns>A list of all the user's liked games.</returns>
         Task<List<LikedGameModel>> GetLikedGame(int UserID);
+
+        /// <summary>
+        /// Gets all games that will show up on the user's feed.
+        /// </summary>
+        /// <param name="UserID">The user's identifier.</param>
+        /// <returns>A list of all the user's liked games.</returns>
+        Task<List<FeedGameModel>> GetFeedGame(int UserID);
+
+        /// <summary>
+        /// Gets a game based off an ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game to get.</param>
+        /// <returns>The GameModel object of the game.</returns>
+        Task<GameModel> GetGameByID(int GameID);
+
+        /// <summary>
+        /// Posts an uploaded image.
+        /// </summary>
+        /// <param name="image">The object of the image to post.</param>
+        /// <returns>The image object.</returns>
+        Task<ImageModel> PostImage(ImageModel image);
     }
 }

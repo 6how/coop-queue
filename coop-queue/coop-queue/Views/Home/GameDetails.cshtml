@@ -1,0 +1,24 @@
+﻿@using CoQ.Models.Models;
+@model GameModel
+
+<div>
+    <div id="profilePageTop">
+
+        <div class="profileHeader"></div>
+
+        <div id="bioCard">
+            <div id="topOfBioCard">
+                <img src="~/css/squanchy.jpg" alt="squanchy" id="profilePhoto">
+                <div class="userName"><b>@Model.GameName</b></div>
+            </div>
+            <div id="bottomOfBioCard">
+                <div id="bottomRight" style="margin-top: 5%;">
+                    <div id="bioHeader">About @Model.GameName:</div>
+                    <div class="userBio">
+                        <div>System: @Model.GameSystem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

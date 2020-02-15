@@ -8,21 +8,32 @@ using coop_queue.Models;
 using CoQ.Web.Models.ViewModels;
 using CoQ.Models.Models;
 using CoQ.Domain.Abstracts;
+using System.IO;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace coop_queue.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ICoopQueue coopQueue;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public HomeController(ICoopQueue coopQueue)
+        public HomeController(ICoopQueue coopQueue, IHostingEnvironment hostingEnvironment)
         {
             this.coopQueue = coopQueue;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
-        public ActionResult Index()
+        [HttpGet]
+        public async Task<ActionResult> Index()
         {
-            return View();
+            int UserID = 1;
+
+            List<FeedGameModel> viewModel = await coopQueue.GetFeedGame(UserID);
+
+            return View(viewModel);
         }
 
         public ActionResult Privacy()
@@ -65,14 +76,22 @@ namespace coop_queue.Controllers
             return View();
         }
 
-        public ActionResult Friends()
+        [HttpGet]
+        public async Task<ActionResult> Friends()
         {
-            return View();
+            int UserID = 1;
+            List<FriendshipModel> viewModel = await coopQueue.GetUserFriend(UserID);
+
+            return View(viewModel);
         }
 
-        public ActionResult Likes()
+        [HttpGet]
+        public async Task<ActionResult> Likes()
         {
-            return View();
+            int UserID = 1;
+            List<LikedGameModel> viewModel = await coopQueue.GetLikedGame(UserID);
+
+            return View(viewModel);
         }
 
         public ActionResult Messages()
@@ -83,6 +102,48 @@ namespace coop_queue.Controllers
         public ActionResult MessageThread()
         {
             return View();
+        }
+
+        public async Task<ActionResult> GameDetails(int GameID)
+        {
+            GameModel viewModel = await coopQueue.GetGameByID(GameID);
+
+            return View(viewModel);
+        }
+
+        public ActionResult UploadTest()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UploadFile()
+        {
+            IFormFile file = Request.Form.Files[0];
+            string filePath = Path.Combine(Path.Combine(hostingEnvironment.WebRootPath, "upload"), file.FileName);
+
+            ImageModel image = new ImageModel();
+
+            using(var stream = new MemoryStream())
+            {
+                await file.CopyToAsync(stream);
+                byte[] imageBytes = stream.ToArray();
+
+                image.Base64String = Convert.ToBase64String(imageBytes);
+                image.Name = file.FileName;
+                image.FileSize = file.Length;
+                image.ContentType = file.ContentType;
+            }
+
+            ImageModel returnImage = await coopQueue.PostImage(image);
+            string imageString = "data:" + returnImage.ContentType + ";base64," + returnImage.Base64String;
+
+            return RedirectToAction("TestView", "Home", new { imageString = imageString });
+        }
+
+        public ActionResult TestView(string imageString)
+        {
+            return View(imageString);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -135,24 +196,6 @@ namespace coop_queue.Controllers
             FriendFromID = 1,
             FriendToID = 2,
             FriendshipID = 2
-        };
-
-        public GameModel haloMCC = new GameModel
-        {
-            GameID = 1,
-            GameName = "Halo: The Master Chief Collection",
-            GameScore = 8,
-            GameSystem = "PC",
-            IsActive = true
-        };
-
-        public GameModel lastOfUS = new GameModel
-        {
-            GameID = 2,
-            GameName = "The Last Of Us",
-            GameScore = 9.75,
-            GameSystem = "Playstation",
-            IsActive = true
         };
 
         //public LikedGameModel coleHalo = new LikedGameModel
