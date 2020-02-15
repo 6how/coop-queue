@@ -1,6 +1,11 @@
-﻿@using CoQ.Models.Models;
-@model GameModel
+﻿@using CoQ.Web.Models.ViewModels;
+@model GameDetailsViewModel
 
+<style>
+    .profileLikesSection{
+        margin-top: 5%;
+    }
+</style>
 <div>
     <div id="profilePageTop">
 
@@ -8,17 +13,80 @@
 
         <div id="bioCard">
             <div id="topOfBioCard">
-                <img src="~/images/@Model.ImageName" alt="@Model.GameName Image" id="profilePhoto">
-                <div class="userName"><b>@Model.GameName</b></div>
+                <img src="~/images/@Model.GameModel.ImageName" alt="@Model.GameModel.GameName Image" id="profilePhoto">
+                <div class="userName"><b>@Model.GameModel.GameName</b></div>
             </div>
             <div id="bottomOfBioCard">
                 <div id="bottomRight" style="margin-top: 5%;">
-                    <div id="bioHeader">About @Model.GameName:</div>
+                    <div id="bioHeader">About @Model.GameModel.GameName:</div>
                     <div class="userBio">
-                        <div>System: @Model.System</div>
+                        @Model.GameModel.GameDescription
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="profilePageContent">
+
+        @if (Model.News.Count > 0)
+        {
+            <div class="profileLikesSection" style="padding-left: 10px;">
+                <h3>News</h3>
+                <div class="divideLine"></div>
+                @foreach (var news in Model.News)
+                {
+                    <a href="@news.MediaURL">
+                        <img src="~/images/@Model.GameModel.ImageName" />
+                    </a>
+                }
+            </div>
+        }
+
+        <div class="profileLikesSection" style="padding-left: 10px;">
+            <h3>Reviews</h3>
+            <div class="divideLine"></div>
+            @if (Model.Reviews.Count > 0)
+            {
+                foreach (var review in Model.Reviews)
+                {
+                    <a href="@review.MediaURL">
+                        <img src="~/images/@Model.GameModel.ImageName" />
+                    </a>
+                }
+            }
+            else
+            {
+                <h4>There are no reviews for this game as it is not released yet.</h4>
+            }
+        </div>
+
+        @if (Model.Screenshots.Count > 0)
+        {
+            <div class="profileLikesSection" style="padding-left: 10px;">
+                <h3>Screenshots</h3>
+                <div class="divideLine"></div>
+                @foreach (var screenshot in Model.Screenshots)
+                {
+                    <img src="~/images/@screenshot.MediaURL">
+                }
+            </div>
+        }
+
+        @if (Model.Trailers.Count > 0)
+        {
+            <div class="profileLikesSection" style="padding-left: 10px;">
+                <h3>Trailers</h3>
+                <div class="divideLine"></div>
+                @foreach (var trailer in Model.Trailers)
+                {
+                    <iframe width="560" height="315" src="@trailer.MediaURL"
+                            frameborder="0" allow="accelerometer; autoplay;
+                        encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                }
+            </div>
+        }
     </div>
 </div>

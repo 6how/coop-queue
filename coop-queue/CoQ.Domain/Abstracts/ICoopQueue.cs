@@ -46,6 +46,34 @@ namespace CoQ.Domain.Abstracts
         Task<GameModel> GetGameByID(int GameID);
 
         /// <summary>
+        /// Gets all news for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of news for the given game.</returns>
+        Task<List<GameNews>> GetNewsByID(int GameID);
+
+        /// <summary>
+        /// Gets all reviews for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of reviews for the given game.</returns>
+        Task<List<GameReview>> GetReviewsByID(int GameID);
+
+        /// <summary>
+        /// Gets all screenshots for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of screenshots for the given game.</returns>
+        Task<List<GameScreenshot>> GetScreenshotsByID(int GameID);
+
+        /// <summary>
+        /// Gets all trailers for a game based off ID.
+        /// </summary>
+        /// <param name="GameID">The ID of the game.</param>
+        /// <returns>A list of trailers for the given game.</returns>
+        Task<List<GameTrailer>> GetTrailersByID(int GameID);
+
+        /// <summary>
         /// Posts an uploaded image.
         /// </summary>
         /// <param name="image">The object of the image to post.</param>

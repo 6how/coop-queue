@@ -12,6 +12,8 @@ namespace CoQ.Models.Models
 
         public string GameName { get; set; }
 
+        public string GameDescription { get; set; }
+
         public string ImageName { get; set; }
 
         public int Score { get; set; }
