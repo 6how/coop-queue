@@ -1,6 +1,14 @@
 ﻿@using CoQ.Web.Models.ViewModels
 @model ProfileViewModel
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+    .modal button{
+        border-radius: 0 !important;
+    }
+</style>
+
 <div>
     <div id="profilePageTop">
 
@@ -16,15 +24,16 @@
                 <div class="userName"><b>@Model.User.UserName</b></div>
             </div>
             <div id="bottomOfBioCard">
-                <div id="bottomLeft">
-                    <button id="editProfileBtn">Edit Profile</button>
-                </div>
                 <div id="bottomRight">
                     <div id="bioHeader">About Me:</div>
                     <div class="userBio">
                         @Model.User.UserDescription
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <button id="removeFriend" class="btn btn-danger">Remove Friend</button>
             </div>
         </div>
     </div>
@@ -38,13 +47,50 @@
                 <div class="divideLine"></div>
                 @foreach (var game in Model.LikedGames)
                 {
-                    <div class="likesCard">
-                        <img class="likesCardPhoto" src="~/images/@game.ImageName" />
-                        <div class="likesCardName"><b>@game.GameName</b> | @game.System</div>
-                    </div>
+                    <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID})'">
+                        <div class="likesCard">
+                            <img class="likesCardPhoto" src="~/images/@game.ImageName" />
+                            <div class="likesCardName"><b>@game.GameName</b> | @game.System</div>
+                        </div>
+                    </a>
                 }
             </div>
         }
         <div class="likesThumbnails"></div>
     </div>
 </div>
+
+<div class="modal" id="confirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5>Are you sure?</h5>
+            </div>
+            <button type="button" id="confirmRemove" class="btn btn-outline-dark">Execute them!</button>
+            <button type="button" class="btn btn-outline-success" data-dismiss="modal">I shall spare them...</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#removeFriend').click(function () {
+        $('#confirmModal').modal('show');
+    });
+
+    $('#confirmRemove').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("RemoveFriend", "Home")',
+            data: {
+                UserID: 1,
+                FriendID: @Model.User.UserID
+            },
+            success: function (data) {
+                location.href = '@Url.Action("Profile", "Home")';
+            },
+            error: function () {
+                alert('Something went wrong');
+            }
+        });
+    })
+</script>

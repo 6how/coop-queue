@@ -1,0 +1,43 @@
+﻿@using CoQ.Models.Models;
+@model List<UserModel>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+@if (Model.Count > 0)
+{
+    <h1>Here are some people that also liked that game!</h1>
+
+    @foreach (var user in Model)
+    {
+        <div class="friendCard" id="div_@user.UserID">
+            <button class="btn btn-outline-success addFriend" id="@user.UserID">Add Friend</button>
+            <img class="cardPhoto" src="~/images/@user.ImageName" />
+            <div class="cardName">@user.UserName</div>
+        </div>
+    }
+}
+else
+{
+    <h1>You know everyone that has liked that game! What a surprise!</h1>
+}
+
+<script>
+    $('.addFriend').click(function () {
+        var FriendID = this.id;
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddFriend", "Home")',
+            data: {
+                UserID: 1,
+                FriendID: FriendID
+            },
+            success: function (data) {
+                $('#div_' + FriendID).hide();
+                alert('Friend request sent!');
+            },
+            error: function () {
+                alert('Something went wrong');
+            }
+        });
+    });
+</script>

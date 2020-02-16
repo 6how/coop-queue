@@ -19,6 +19,8 @@ namespace CoQ.Domain.Repositories
             modelBuilder.HasDefaultSchema("CoQ");
         }
 
+        #region DbSets
+
         public virtual DbSet<SPGetUserAccount> GetUserAccount { get; set; }
 
         public virtual DbSet<FriendshipModel> GetUserFriends { get; set; }
@@ -37,15 +39,26 @@ namespace CoQ.Domain.Repositories
 
         public virtual DbSet<GameTrailer> GetTrailers { get; set; }
 
+        public virtual DbSet<UserModel> GetUserByGame { get; set; }
+
+        public virtual DbSet<FriendshipModel> GetPendingFriend { get; set; }
+
         public virtual DbSet<ImageModel> PostImages { get; set; }
+
+        public virtual DbSet<GameModel> PostDislikedGames { get; set; }
+
+        public virtual DbSet<GameModel> PostLikedGames { get; set; }
+
+        public virtual DbSet<FriendshipModel> PostRemoveFriends { get; set; }
+
+        public virtual DbSet<UserModel> PostAddFriends { get; set; }
+
+        public virtual DbSet<UserModel> PostAcceptFriends { get; set; }
+
+        #endregion
 
         #region Gets
 
-        /// <summary>
-        /// Gets a user account for the profile page.
-        /// </summary>
-        /// <param name="UserID">User's identifier.</param>
-        /// <returns>The user's account object.</returns>
         public async Task<SPGetUserAccount> GetUserProfile(int UserID)
         {
             SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
@@ -55,11 +68,6 @@ namespace CoQ.Domain.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        /// <summary>
-        /// Gets all friends for a user.
-        /// </summary>
-        /// <param name="UserID">User's identifier.</param>
-        /// <returns>List of user's friends.</returns>
         public async Task<List<FriendshipModel>> GetUserFriend(int UserID)
         {
             SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
@@ -69,11 +77,6 @@ namespace CoQ.Domain.Repositories
                 .ToListAsync();
         }
 
-        /// <summary>
-        /// Gets all games a user liked.
-        /// </summary>
-        /// <param name="UserID">The user's identifier.</param>
-        /// <returns>A list of all the user's liked games.</returns>
         public async Task<List<LikedGameModel>> GetLikedGame(int UserID)
         {
             SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
@@ -83,11 +86,6 @@ namespace CoQ.Domain.Repositories
                 .ToListAsync();
         }
 
-        /// <summary>
-        /// Gets all games that will show up on the user's feed.
-        /// </summary>
-        /// <param name="UserID">The user's identifier.</param>
-        /// <returns>A list of all the user's liked games.</returns>
         public async Task<List<GameModel>> GetFeedGame(int UserID)
         {
             SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
@@ -97,11 +95,6 @@ namespace CoQ.Domain.Repositories
                 .ToListAsync();
         }
 
-        /// <summary>
-        /// Gets a game based off an ID.
-        /// </summary>
-        /// <param name="GameID">The ID of the game to get.</param>
-        /// <returns>The GameModel object of the game.</returns>
         public async Task<GameModel> GetGameByID(int GameID)
         {
             SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
@@ -111,11 +104,6 @@ namespace CoQ.Domain.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        /// <summary>
-        /// Gets all news for a game based off ID.
-        /// </summary>
-        /// <param name="GameID">The ID of the game.</param>
-        /// <returns>A list of news for the given game.</returns>
         public async Task<List<GameNews>> GetNewsByID(int GameID)
         {
             SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
@@ -125,11 +113,6 @@ namespace CoQ.Domain.Repositories
                 .ToListAsync();
         }
 
-        /// <summary>
-        /// Gets all reviews for a game based off ID.
-        /// </summary>
-        /// <param name="GameID">The ID of the game.</param>
-        /// <returns>A list of reviews for the given game.</returns>
         public async Task<List<GameReview>> GetReviewsByID(int GameID)
         {
             SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
@@ -139,11 +122,6 @@ namespace CoQ.Domain.Repositories
                 .ToListAsync();
         }
 
-        /// <summary>
-        /// Gets all screenshots for a game based off ID.
-        /// </summary>
-        /// <param name="GameID">The ID of the game.</param>
-        /// <returns>A list of screenshots for the given game.</returns>
         public async Task<List<GameScreenshot>> GetScreenshotsByID(int GameID)
         {
             SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
@@ -153,11 +131,6 @@ namespace CoQ.Domain.Repositories
                 .ToListAsync();
         }
 
-                /// <summary>
-        /// Gets all trailers for a game based off ID.
-        /// </summary>
-        /// <param name="GameID">The ID of the game.</param>
-        /// <returns>A list of trailers for the given game.</returns>
         public async Task<List<GameTrailer>> GetTrailersByID(int GameID)
         {
             SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
@@ -167,13 +140,34 @@ namespace CoQ.Domain.Repositories
                 .ToListAsync();
         }
 
+        public async Task<List<UserModel>> GetUsersByGame(int GameID, int UserID)
+        {
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+
+
+            return await GetUserByGame.FromSql("EXEC CoQ.GetUsersByGame @GameID, @UserID", 
+                new[] {
+                    gameParam,
+                    userParam
+                })
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<List<FriendshipModel>> GetPendingFriends(int UserID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+
+            return await GetPendingFriend.FromSql("EXEC CoQ.GetPendingFriends @UserID", userParam)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
         #endregion
 
-        /// <summary>
-        /// Posts an uploaded image.
-        /// </summary>
-        /// <param name="image">The object of the image to post.</param>
-        /// <returns>The image object.</returns>
+        #region Posts/Puts
+
         public async Task<ImageModel> PostImage(ImageModel image, int UserID)
         {
             SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
@@ -192,12 +186,70 @@ namespace CoQ.Domain.Repositories
                 }).FirstOrDefaultAsync();
         }
 
-        /// <summary>
-        /// NOTE: THIS IS FOR ADMIN USE ONLY. USERS CANT ADD GAMES
-        /// </summary>
-        /// <param name="image"></param>
-        /// <param name="GameID"></param>
-        /// <returns></returns>
+        public async Task<GameModel> PostDislikedGame(int UserID, int GameID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await PostDislikedGames.FromSql("EXEC CoQ.PostDislikedGame @UserID, @GameID",
+                new[] {
+                    userParam,
+                    gameParam
+                }).FirstOrDefaultAsync();
+        }
+
+        public async Task<GameModel> PostLikedGame(int UserID, int GameID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await PostLikedGames.FromSql("EXEC CoQ.PostLikedGame @UserID, @GameID",
+                new[] {
+                    userParam,
+                    gameParam
+                }).FirstOrDefaultAsync();
+        }
+
+        public async Task<FriendshipModel> PostRemoveFriend(int UserID, int FriendID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+            SqlParameter friendParam = new SqlParameter { ParameterName = "@FriendID", SqlDbType = SqlDbType.Int, Value = FriendID };
+
+            return await PostRemoveFriends.FromSql("EXEC CoQ.PostRemoveFriend @UserID, @FriendID",
+                new[] {
+                    userParam,
+                    friendParam
+                }).FirstOrDefaultAsync();
+        }
+
+        public async Task<UserModel> PostAddFriend(int UserID, int FriendID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+            SqlParameter friendParam = new SqlParameter { ParameterName = "@FriendID", SqlDbType = SqlDbType.Int, Value = FriendID };
+
+            return await PostAddFriends.FromSql("EXEC CoQ.PostAddFriend @UserID, @FriendID",
+                new[]{
+                    userParam,
+                    friendParam
+                }).FirstOrDefaultAsync();
+        }
+
+        public async Task<UserModel> PutAcceptFriend(int UserID, int FriendID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+            SqlParameter friendParam = new SqlParameter { ParameterName = "@FriendID", SqlDbType = SqlDbType.Int, Value = FriendID };
+
+            return await PostAcceptFriends.FromSql("EXEC CoQ.PutAcceptFriend @UserID, @FriendID",
+                new[]{
+                    userParam,
+                    friendParam
+                }).FirstOrDefaultAsync();
+        }
+
+        #endregion
+
+        #region Admin Ignore
+
         public async Task<ImageModel> PostGameImage(ImageModel image, int GameID)
         {
             SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
@@ -215,5 +267,7 @@ namespace CoQ.Domain.Repositories
                     contentParam
                 }).FirstOrDefaultAsync();
         }
+
+        #endregion
     }
 }
