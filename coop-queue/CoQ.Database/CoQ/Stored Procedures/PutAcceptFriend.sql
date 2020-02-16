@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [CoQ].PutAcceptFriend @UserID int, @FriendID int
+﻿CREATE PROCEDURE [CoQ].[PutAcceptFriend] @UserID int, @FriendID int
 AS
 
 UPDATE CoQ.Friendships
@@ -10,14 +10,13 @@ DECLARE @RowID int
 SET @RowID = SCOPE_IDENTITY()
 
 SELECT 
-	u.UserID,
+	u.Id AS UserID,
 	u.UserName,
 	u.UserDescription,
 	u.Email,
-	u.IsActive,
 	i.ImageID,
 	i.ImageName
-FROM CoQ.Users u
-JOIN CoQ.LikedGames lg ON lg.UserID = u.UserID
+FROM dbo.AspNetUsers u
+JOIN CoQ.LikedGames lg ON lg.UserID = u.Id
 JOIN CoQ.Image i ON i.ImageID = u.UserImageID
-WHERE u.UserID = @FriendID
+WHERE u.Id = @FriendID

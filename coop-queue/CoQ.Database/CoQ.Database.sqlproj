@@ -62,6 +62,8 @@
     <Folder Include="CoQ\Tables\" />
     <Folder Include="CoQ\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="CoQ\Tables\Games.sql" />
@@ -79,9 +81,7 @@
     <Build Include="CoQ\Tables\UserClaims.sql" />
     <Build Include="CoQ\Tables\Roles.sql" />
     <Build Include="CoQ\Tables\RoleClaims.sql" />
-    <Build Include="CoQ\Stored Procedures\GetUserID.sql" />
     <Build Include="CoQ\Stored Procedures\GetFeedForUser.sql" />
-    <Build Include="CoQ\Stored Procedures\CheckCredentials.sql" />
     <Build Include="CoQ\Stored Procedures\GetGameByID.sql" />
     <Build Include="CoQ\Stored Procedures\PostImage.sql" />
     <Build Include="CoQ\Tables\ImageData.sql" />
@@ -100,5 +100,13 @@
     <Build Include="CoQ\Stored Procedures\PostAddFriend.sql" />
     <Build Include="CoQ\Stored Procedures\GetPendingFriends.sql" />
     <Build Include="CoQ\Stored Procedures\PutAcceptFriend.sql" />
+    <Build Include="dbo\Tables\AspNetUserTokens.sql" />
+    <Build Include="dbo\Tables\AspNetUsers.sql" />
+    <Build Include="dbo\Tables\AspNetUserRoles.sql" />
+    <Build Include="dbo\Tables\AspNetUserLogins.sql" />
+    <Build Include="dbo\Tables\AspNetUserClaims.sql" />
+    <Build Include="dbo\Tables\AspNetRoles.sql" />
+    <Build Include="dbo\Tables\AspNetRoleClaims.sql" />
+    <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
   </ItemGroup>
 </Project>

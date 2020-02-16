@@ -1,5 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<h1>Login here!</h1>
+
+<form id="loginForm" action='@Url.Action("ConfirmLogin", "Home")'>
+    <input type="text" id="enteredUserName" name="enteredUserName" placeholder="Username" />
+    <br />
+    <input type="password" id="enteredPassword" name="enteredPassword" placeholder="Password" />
+
+    <button type="submit">Login</button>
+</form>

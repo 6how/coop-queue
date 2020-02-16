@@ -1,5 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<h1>Create an account for Co-op Queue here!</h1>
+
+<form id="registerForm" action="@Url.Action("RegisterAccount", "Home")">
+    <input type="text" id="enteredUserName" name="enteredUserName" placeholder="Username" />
+    <br />
+    Username can only contain letters and numbers
+    <br />
+    <input type="email" id="enteredEmail" name="enteredEmail" placeholder="Email address" />
+    <br />
+    <input type="password" id="enteredPassword" name="enteredPassword" placeholder="Password" />
+
+    <div id="passwordInfo">
+        Password must contain the following:
+        <ul>
+            <li>6 or more characters</li>
+            <li>An uppercase letter</li>
+            <li>A special character</li>
+            <li>A number</li>
+        </ul>
+    </div>
+
+    <button type="submit">Register</button>
+</form>

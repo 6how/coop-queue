@@ -30,13 +30,13 @@ SELECT
 	f.AddedOn AS FriendAddedOn,
 	i.ImageName AS FriendImageName,
 	u.UserName AS FriendName,
-	u.UserID AS OtherFriendID,
+	u.Id AS OtherFriendID,
 	ibs.Base64String AS FriendImagePath
 FROM #FriendshipInfo f
-LEFT JOIN CoQ.Users u ON (u.UserID = f.FriendFromID OR u.UserID = f.FriendToID)
+LEFT JOIN dbo.AspNetUsers u ON (u.Id= f.FriendFromID OR u.Id = f.FriendToID)
 JOIN CoQ.Image i ON u.UserImageID = i.ImageID
 JOIN CoQ.ImageBase64String ibs ON u.UserImageID = ibs.ImageID
-WHERE u.UserID <> @UserID
+WHERE u.Id <> @UserID
 
 IF(OBJECT_ID('tempdb..#FriendshipInfo') IS NOT NULL)
 	BEGIN

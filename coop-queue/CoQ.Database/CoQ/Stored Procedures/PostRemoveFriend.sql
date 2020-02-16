@@ -12,10 +12,10 @@ SELECT TOP(1)
 	f.AddedOn AS FriendAddedOn,
 	i.ImageName AS FriendImageName,
 	u.UserName AS FriendName,
-	u.UserID AS OtherFriendID,
+	u.Id AS OtherFriendID,
 	ibs.Base64String AS FriendImagePath
 	FROM CoQ.Friendships f
-LEFT JOIN CoQ.Users u ON (u.UserID = f.FriendFromID OR u.UserID = f.FriendToID)
+LEFT JOIN dbo.AspNetUsers u ON (u.Id = f.FriendFromID OR u.Id = f.FriendToID)
 JOIN CoQ.Image i ON u.UserImageID = i.ImageID
 JOIN CoQ.ImageBase64String ibs ON u.UserImageID = ibs.ImageID
 WHERE ((FriendFromID = @UserID AND FriendToID = @FriendID) OR

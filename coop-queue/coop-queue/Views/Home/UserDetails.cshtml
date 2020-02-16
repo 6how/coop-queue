@@ -82,7 +82,6 @@
             type: 'POST',
             url: '@Url.Action("RemoveFriend", "Home")',
             data: {
-                UserID: 1,
                 FriendID: @Model.User.UserID
             },
             success: function (data) {
