@@ -11,7 +11,16 @@
     {
         <a onclick="location.href = '@Url.Action("UserDetails", "Home", new { UserID = friend.OtherFriendID})'">
             <div class="friendCard">
-                <img class="cardPhoto" src="~/images/@friend.FriendImageName" />
+                @if (String.IsNullOrEmpty(friend.FriendImageName))
+                {
+                    <img class="cardPhoto" src="~/images/emptyPic.jpg" />
+
+                }
+                else
+                {
+                    <img class="cardPhoto" src="~/images/@friend.FriendImageName" />
+
+                }
                 <div class="cardName">@friend.FriendName</div>
             </div>
         </a>
@@ -25,11 +34,20 @@
         <div class="divideLine"></div>
         @foreach (FriendshipModel pendingFriend in Model.PendingFriends)
         {
-            <div class="friendCard">
-                <button class="btn btn-outline-success acceptFriend" id="@pendingFriend.OtherFriendID">Accept Request</button>
+    <div class="friendCard">
+        <button class="btn btn-outline-success acceptFriend" id="@pendingFriend.OtherFriendID">Accept Request</button>
+            @if (String.IsNullOrEmpty(pendingFriend.FriendImageName))
+            {
+                <img class="cardPhoto" src="~/images/emptyPic.jpg" />
+
+            }
+            else
+            {
                 <img class="cardPhoto" src="~/images/@pendingFriend.FriendImageName" />
-                <div class="cardName">@pendingFriend.FriendName</div>
-            </div>
+
+            }
+        <div class="cardName">@pendingFriend.FriendName</div>
+    </div>
         }
     </div>
 }

@@ -1,20 +1,18 @@
-﻿using System;
+﻿using coop_queue.Models;
+using CoQ.Domain.Abstracts;
+using CoQ.Models.Models;
+using CoQ.Web.Models;
+using CoQ.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using coop_queue.Models;
-using CoQ.Web.Models.ViewModels;
-using CoQ.Models.Models;
-using CoQ.Domain.Abstracts;
-using System.IO;
-using System.Net.Http.Headers;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using CoQ.Web.Models;
-using System.Security.Claims;
 
 namespace coop_queue.Controllers
 {
@@ -22,8 +20,8 @@ namespace coop_queue.Controllers
     {
         private readonly ICoopQueue coopQueue;
         private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        private IHttpContextAccessor httpContextAccessor;
         private UserManager<AppUser> userManager;
         private SignInManager<AppUser> signInManager;
 
@@ -46,7 +44,8 @@ namespace coop_queue.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             List<GameModel> viewModel = await coopQueue.GetFeedGame(UserID);
 
@@ -71,7 +70,8 @@ namespace coop_queue.Controllers
         [HttpGet]
         public async Task<ActionResult> Profile()
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             ProfileViewModel viewModel = new ProfileViewModel
             {
@@ -135,7 +135,8 @@ namespace coop_queue.Controllers
         [HttpGet]
         public async Task<ActionResult> Friends()
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             FriendsPageViewModel viewModel = new FriendsPageViewModel
             {
@@ -149,7 +150,8 @@ namespace coop_queue.Controllers
         [HttpGet]
         public async Task<ActionResult> Likes()
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             List<LikedGameModel> viewModel = await coopQueue.GetLikedGame(UserID);
 
@@ -168,7 +170,8 @@ namespace coop_queue.Controllers
 
         public async Task<ActionResult> GameDetails(int GameID, bool isLiked)
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             GameModel gameModel = await coopQueue.GetGameByID(GameID);
 
@@ -199,7 +202,8 @@ namespace coop_queue.Controllers
 
         public async Task<ActionResult> PotentialFriends(int GameID)
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             List<UserModel> viewModel = await coopQueue.GetUsersByGame(GameID, UserID);
 
@@ -208,7 +212,8 @@ namespace coop_queue.Controllers
 
         public async Task<ActionResult> AddFriend(int FriendID)
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             UserModel addedFriend = await coopQueue.PostAddFriend(UserID, FriendID);
 
@@ -217,7 +222,8 @@ namespace coop_queue.Controllers
 
         public async Task<ActionResult> AcceptFriend(int FriendID)
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             UserModel acceptedFriend = await coopQueue.PutAcceptFriend(UserID, FriendID);
 
@@ -232,7 +238,8 @@ namespace coop_queue.Controllers
         [HttpPost]
         public async Task<ActionResult> UploadFile()
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             IFormFile file = Request.Form.Files[0];
             string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + file.FileName;
@@ -260,7 +267,8 @@ namespace coop_queue.Controllers
         [HttpPost]
         public async Task<ActionResult> DislikeGame(int GameID)
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             GameModel dislikedGame = await coopQueue.PostDislikedGame(UserID, GameID);
 
@@ -270,7 +278,8 @@ namespace coop_queue.Controllers
         [HttpPost]
         public async Task<ActionResult> LikeGame(int GameID)
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             GameModel likedGame = await coopQueue.PostLikedGame(UserID, GameID);
 
@@ -280,7 +289,8 @@ namespace coop_queue.Controllers
         [HttpPost]
         public async Task<ActionResult> RemoveFriend(int FriendID)
         {
-            int UserID = Convert.ToInt32(userManager.Users.FirstOrDefault().Id);
+            AppUser currentUser = await userManager.GetUserAsync(User);
+            int UserID = currentUser.Id;
 
             FriendshipModel deletedFriendship = await coopQueue.PostRemoveFriend(UserID, FriendID);
 

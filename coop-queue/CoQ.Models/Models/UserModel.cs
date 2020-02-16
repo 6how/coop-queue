@@ -13,8 +13,6 @@ namespace CoQ.Models.Models
 
         public string Email { get; set; }
 
-        public bool IsActive { get; set; }
-
         public int? ImageID { get; set; }
 
         public string ImageName { get; set; }

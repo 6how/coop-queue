@@ -11,5 +11,5 @@ SELECT
 	i.ImageName
 FROM dbo.AspNetUsers u
 JOIN CoQ.LikedGames lg ON lg.UserID = u.Id
-JOIN CoQ.Image i ON i.ImageID = u.UserImageID
+LEFT OUTER JOIN CoQ.Image i ON i.ImageID = u.UserImageID
 WHERE lg.UserID <> @UserID AND lg.GameID = @GameID

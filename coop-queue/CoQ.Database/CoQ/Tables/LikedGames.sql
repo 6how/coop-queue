@@ -5,9 +5,10 @@
     [LikedOn]     DATETIME NOT NULL,
     [IsActive]    BIT      NOT NULL,
     PRIMARY KEY CLUSTERED ([LikedGameID] ASC),
-    CONSTRAINT [FK_LikedGames_Games] FOREIGN KEY ([GameID]) REFERENCES [CoQ].[Games] ([GameID]),
-    CONSTRAINT [FK_LikedGames_Users] FOREIGN KEY ([UserID]) REFERENCES [CoQ].[Users] ([UserID])
+    CONSTRAINT [FK_LikedGames_Games] FOREIGN KEY ([GameID]) REFERENCES [CoQ].[Games] ([GameID])
 );
+
+
 
 
 
