@@ -92,5 +92,8 @@
     <Build Include="CoQ\Stored Procedures\GetScreenshotsByID.sql" />
     <Build Include="CoQ\Stored Procedures\GetReviewsByID.sql" />
     <Build Include="CoQ\Stored Procedures\GetNewsByID.sql" />
+    <Build Include="CoQ\Tables\DislikedGames.sql" />
+    <Build Include="CoQ\Stored Procedures\PostLikedGame.sql" />
+    <Build Include="CoQ\Stored Procedures\PostDislikedGame.sql" />
   </ItemGroup>
 </Project>

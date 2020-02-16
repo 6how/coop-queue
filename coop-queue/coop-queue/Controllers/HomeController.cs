@@ -104,7 +104,7 @@ namespace coop_queue.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GameDetails(int GameID)
+        public async Task<ActionResult> GameDetails(int GameID, bool isLiked)
         {
             GameModel gameModel = await coopQueue.GetGameByID(GameID);
 
@@ -114,7 +114,9 @@ namespace coop_queue.Controllers
                 News = await coopQueue.GetNewsByID(GameID),
                 Reviews = await coopQueue.GetReviewsByID(GameID),
                 Screenshots = await coopQueue.GetScreenshotsByID(GameID),
-                Trailers = await coopQueue.GetTrailersByID(GameID)
+                Trailers = await coopQueue.GetTrailersByID(GameID),
+                IsLiked = isLiked,
+                UserID = 1
             };
 
             return View(viewModel);
@@ -164,6 +166,22 @@ namespace coop_queue.Controllers
             return RedirectToAction("TestView", "Home", returnImage);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> DislikeGame(int UserID, int GameID)
+        {
+            GameModel dislikedGame = await coopQueue.PostDislikedGame(UserID, GameID);
+
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> LikeGame(int UserID, int GameID)
+        {
+            GameModel likedGame = await coopQueue.PostLikedGame(UserID, GameID);
+
+            return Json(new { success = true });
+        }
+
         public ActionResult TestView(ImageModel image)
         {
             return View(image);
@@ -174,83 +192,5 @@ namespace coop_queue.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
-
-        #region TestData
-        public UserModel testUser1 = new UserModel
-        {
-            Email = "testUser1@gmail.com",
-            UserDescription = "I am a test user. The first of my line. Come play games with me!",
-            UserID = 1,
-            UserName = "Test User",
-            IsActive = true
-        };
-
-        public UserModel coleGlaser = new UserModel
-        {
-            Email = "glasercr@mail.uc.edu",
-            UserDescription = "I am me. Nothing really else to say.",
-            UserID = 2,
-            UserName = "Cole Glaser",
-            IsActive = true
-        };
-
-        public UserModel abdouFall = new UserModel
-        {
-            Email = "fallal@mail.uc.edu",
-            UserDescription = "My name is Abdou and I am the homie!",
-            UserID = 3,
-            UserName = "Abdou Fall",
-            IsActive = true
-        };
-
-        public FriendshipModel coleAbdou = new FriendshipModel
-        {
-            FriendAddedOn = DateTime.Now.AddDays(-4),
-            FriendFromID = 2,
-            FriendToID = 3,
-            FriendshipID = 1
-        };
-
-        public FriendshipModel coleTest = new FriendshipModel
-        {
-            FriendAddedOn = DateTime.Now.AddDays(-7),
-            FriendFromID = 1,
-            FriendToID = 2,
-            FriendshipID = 2
-        };
-
-        //public LikedGameModel coleHalo = new LikedGameModel
-        //{
-        //    LikedGameID = 1,
-        //    LikedOnDate = DateTime.Now.AddDays(-16),
-        //    Game = new GameModel
-        //    {
-        //        GameID = 1,
-        //        GameName = "Halo: The Master Chief Collection",
-        //        GameScore = 8,
-        //        GameSystem = "PC",
-        //        IsActive = true
-        //    },
-        //    IsActive = true
-        //};
-
-        //public LikedGameModel coleLast = new LikedGameModel
-        //{
-        //    LikedGameID = 2,
-        //    LikedOnDate = DateTime.Now.AddDays(-700),
-        //    Game = new GameModel
-        //    {
-        //        GameID = 2,
-        //        GameName = "The Last Of Us",
-        //        GameScore = 9.75,
-        //        GameSystem = "Playstation",
-        //        IsActive = true
-        //    },
-        //    IsActive = true
-        //};
-
-        #endregion
     }
 }

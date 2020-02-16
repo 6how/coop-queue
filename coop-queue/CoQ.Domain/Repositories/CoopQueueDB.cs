@@ -19,6 +19,8 @@ namespace CoQ.Domain.Repositories
             modelBuilder.HasDefaultSchema("CoQ");
         }
 
+        #region DbSets
+
         public virtual DbSet<SPGetUserAccount> GetUserAccount { get; set; }
 
         public virtual DbSet<FriendshipModel> GetUserFriends { get; set; }
@@ -38,6 +40,12 @@ namespace CoQ.Domain.Repositories
         public virtual DbSet<GameTrailer> GetTrailers { get; set; }
 
         public virtual DbSet<ImageModel> PostImages { get; set; }
+
+        public virtual DbSet<GameModel> PostDislikedGames { get; set; }
+
+        public virtual DbSet<GameModel> PostLikedGames { get; set; }
+
+        #endregion
 
         #region Gets
 
@@ -169,6 +177,8 @@ namespace CoQ.Domain.Repositories
 
         #endregion
 
+        #region Posts/Puts
+
         /// <summary>
         /// Posts an uploaded image.
         /// </summary>
@@ -193,6 +203,46 @@ namespace CoQ.Domain.Repositories
         }
 
         /// <summary>
+        /// Posts the disliked game.
+        /// </summary>
+        /// <param name="UserID">The user who disliked the game.</param>
+        /// <param name="GameID">The id of the game.</param>
+        /// <returns>The GameModel of the disliked game.</returns>
+        public async Task<GameModel> PostDislikedGame(int UserID, int GameID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await PostDislikedGames.FromSql("EXEC CoQ.PostDislikedGame @UserID, @GameID",
+                new[] {
+                    userParam,
+                    gameParam
+                }).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// Posts the Liked game.
+        /// </summary>
+        /// <param name="UserID">The user who Liked the game.</param>
+        /// <param name="GameID">The id of the game.</param>
+        /// <returns>The GameModel of the Liked game.</returns>
+        public async Task<GameModel> PostLikedGame(int UserID, int GameID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+            SqlParameter gameParam = new SqlParameter { ParameterName = "@GameID", SqlDbType = SqlDbType.Int, Value = GameID };
+
+            return await PostLikedGames.FromSql("EXEC CoQ.PostLikedGame @UserID, @GameID",
+                new[] {
+                    userParam,
+                    gameParam
+                }).FirstOrDefaultAsync();
+        }
+
+        #endregion
+
+        #region Admin Ignore
+
+        /// <summary>
         /// NOTE: THIS IS FOR ADMIN USE ONLY. USERS CANT ADD GAMES
         /// </summary>
         /// <param name="image"></param>
@@ -215,5 +265,7 @@ namespace CoQ.Domain.Repositories
                     contentParam
                 }).FirstOrDefaultAsync();
         }
+
+        #endregion
     }
 }

@@ -81,6 +81,22 @@ namespace CoQ.Domain.Abstracts
         Task<ImageModel> PostImage(ImageModel image, int UserID);
 
         /// <summary>
+        /// Posts the disliked game.
+        /// </summary>
+        /// <param name="UserID">The user who disliked the game.</param>
+        /// <param name="GameID">The id of the game.</param>
+        /// <returns>The GameModel of the disliked game.</returns>
+        Task<GameModel> PostDislikedGame(int UserID, int GameID);
+
+        /// <summary>
+        /// Posts the Liked game.
+        /// </summary>
+        /// <param name="UserID">The user who Liked the game.</param>
+        /// <param name="GameID">The id of the game.</param>
+        /// <returns>The GameModel of the Liked game.</returns>
+        Task<GameModel> PostLikedGame(int UserID, int GameID);
+
+        /// <summary>
         /// NOTE: THIS IS FOR ADMIN USE ONLY. USERS CANT ADD GAMES
         /// </summary>
         /// <param name="image"></param>

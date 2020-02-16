@@ -38,7 +38,7 @@
                 <div class="divideLine"></div>
                 @foreach (var game in Model.LikedGames)
                 {
-                    <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID})'">
+                    <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID, isLiked = true})'">
 
                         <div class="likesCard">
                             <img class="likesCardPhoto" src="~/images/@game.ImageName" />

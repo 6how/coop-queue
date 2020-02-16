@@ -1,11 +1,13 @@
 ﻿@using CoQ.Web.Models.ViewModels;
 @model GameDetailsViewModel
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <style>
-    .profileLikesSection{
+    .profileLikesSection {
         margin-top: 5%;
     }
 </style>
+
 <div>
     <div id="profilePageTop">
 
@@ -14,7 +16,9 @@
         <div id="bioCard">
             <div id="topOfBioCard">
                 <img src="~/images/@Model.GameModel.ImageName" alt="@Model.GameModel.GameName Image" id="profilePhoto">
-                <div class="userName"><b>@Model.GameModel.GameName</b></div>
+                <div class="userName">
+                    <b>@Model.GameModel.GameName</b> | @Model.GameModel.System
+                </div>
             </div>
             <div id="bottomOfBioCard">
                 <div id="bottomRight" style="margin-top: 5%;">
@@ -24,6 +28,19 @@
                     </div>
                 </div>
             </div>
+            @if (!Model.IsLiked)
+            {
+                <div class="btn-group-lg">
+                    <button class="btn btn-danger" id="dislikeBtn">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Dislike Game
+                    </button>
+                    <button class="btn btn-success" id="likeBtn">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Like Game
+                    </button>
+                </div>
+            }
         </div>
     </div>
 
@@ -70,8 +87,7 @@
                 {
                     <iframe width="560" height="315" src="@trailer.MediaURL"
                             frameborder="0" allow="accelerometer; autoplay;
-                        encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
+                        encrypted-media; gyroscope; picture-in-picture">
                     </iframe>
                 }
             </div>
@@ -90,3 +106,39 @@
         }
     </div>
 </div>
+
+<script>
+    $('#dislikeBtn').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DislikeGame", "Home")',
+            data: {
+                UserID: @Model.UserID,
+                GameID: @Model.GameModel.GameID
+            },
+            success: function (data) {
+                location.href = '@Url.Action("Index", "Home")';
+            },
+            error: function () {
+                alert('Something went wrong');
+            }
+        });
+    });
+
+    $('#likeBtn').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("LikeGame", "Home")',
+            data: {
+                UserID: @Model.UserID,
+                GameID: @Model.GameModel.GameID
+            },
+            success: function (data) {
+                location.href = '@Url.Action("Index", "Home")';
+            },
+            error: function () {
+                alert('Something went wrong');
+            }
+        });
+    });
+</script>
