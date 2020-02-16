@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CoQ.Models.Models
 {
     public class UserModel
     {
+        [Key]
         public int UserID { get; set; }
 
         public string UserName { get; set; }
@@ -17,5 +16,7 @@ namespace CoQ.Models.Models
         public bool IsActive { get; set; }
 
         public int? ImageID { get; set; }
+
+        public string ImageName { get; set; }
     }
 }

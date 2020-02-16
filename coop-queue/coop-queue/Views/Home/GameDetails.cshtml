@@ -134,7 +134,7 @@
                 GameID: @Model.GameModel.GameID
             },
             success: function (data) {
-                location.href = '@Url.Action("Index", "Home")';
+                location.href = '@Url.Action("PotentialFriends", "Home", new { GameID = Model.GameModel.GameID, UserID = Model.UserID })';
             },
             error: function () {
                 alert('Something went wrong');

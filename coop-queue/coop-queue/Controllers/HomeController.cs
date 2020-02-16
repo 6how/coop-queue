@@ -80,7 +80,12 @@ namespace coop_queue.Controllers
         public async Task<ActionResult> Friends()
         {
             int UserID = 1;
-            List<FriendshipModel> viewModel = await coopQueue.GetUserFriend(UserID);
+
+            FriendsPageViewModel viewModel = new FriendsPageViewModel
+            {
+                Friends = await coopQueue.GetUserFriend(UserID),
+                PendingFriends = await coopQueue.GetPendingFriends(UserID)
+            };
 
             return View(viewModel);
         }
@@ -131,6 +136,28 @@ namespace coop_queue.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public async Task<ActionResult> PotentialFriends(int GameID, int UserID)
+        {
+            UserID = 1;
+            List<UserModel> viewModel = await coopQueue.GetUsersByGame(GameID, UserID);
+
+            return View(viewModel);
+        }
+
+        public async Task<ActionResult> AddFriend(int UserID, int FriendID)
+        {
+            UserModel addedFriend = await coopQueue.PostAddFriend(UserID, FriendID);
+
+            return Json(new { success = true });
+        }
+
+        public async Task<ActionResult> AcceptFriend(int UserID, int FriendID)
+        {
+            UserModel acceptedFriend = await coopQueue.PutAcceptFriend(UserID, FriendID);
+
+            return Json(new { success = true });
         }
 
         public ActionResult UploadTest()

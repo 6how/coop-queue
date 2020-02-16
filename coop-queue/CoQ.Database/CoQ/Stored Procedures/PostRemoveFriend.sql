@@ -1,8 +1,7 @@
 ﻿CREATE PROCEDURE [CoQ].[PostRemoveFriend] @UserID INT, @FriendID INT
 	AS
 
-UPDATE CoQ.Friendships
-SET IsActive = 0
+DELETE FROM CoQ.Friendships
 WHERE ((FriendFromID = @UserID AND FriendToID = @FriendID) OR
 	(FriendToID = @UserID AND FriendFromID = @FriendID)) AND IsActive = 1
 

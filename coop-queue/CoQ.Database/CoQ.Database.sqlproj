@@ -96,5 +96,9 @@
     <Build Include="CoQ\Stored Procedures\PostLikedGame.sql" />
     <Build Include="CoQ\Stored Procedures\PostDislikedGame.sql" />
     <Build Include="CoQ\Stored Procedures\PostRemoveFriend.sql" />
+    <Build Include="CoQ\Stored Procedures\GetUsersByGame.sql" />
+    <Build Include="CoQ\Stored Procedures\PostAddFriend.sql" />
+    <Build Include="CoQ\Stored Procedures\GetPendingFriends.sql" />
+    <Build Include="CoQ\Stored Procedures\PutAcceptFriend.sql" />
   </ItemGroup>
 </Project>
