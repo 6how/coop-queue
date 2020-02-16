@@ -45,6 +45,8 @@ namespace CoQ.Domain.Repositories
 
         public virtual DbSet<GameModel> PostLikedGames { get; set; }
 
+        public virtual DbSet<FriendshipModel> PostRemoveFriends { get; set; }
+
         #endregion
 
         #region Gets
@@ -236,6 +238,18 @@ namespace CoQ.Domain.Repositories
                     userParam,
                     gameParam
                 }).FirstOrDefaultAsync();
+        }
+
+        public async Task<FriendshipModel> PostRemoveFriend(int UserID, int FriendID)
+        {
+            SqlParameter userParam = new SqlParameter { ParameterName = "@UserID", SqlDbType = SqlDbType.Int, Value = UserID };
+            SqlParameter friendParam = new SqlParameter { ParameterName = "@FriendID", SqlDbType = SqlDbType.Int, Value = FriendID };
+
+            return await PostRemoveFriends.FromSql("Exec CoQ.PostRemoveFriend @UserID, @FriendID",
+            new[] {
+                userParam,
+                friendParam
+            }).FirstOrDefaultAsync();
         }
 
         #endregion

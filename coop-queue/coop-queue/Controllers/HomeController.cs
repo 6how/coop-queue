@@ -182,6 +182,14 @@ namespace coop_queue.Controllers
             return Json(new { success = true });
         }
 
+        [HttpPost]
+        public async Task<ActionResult> RemoveFriend(int UserID, int FriendID)
+        {
+            FriendshipModel deletedFriendship = await coopQueue.PostRemoveFriend(UserID, FriendID);
+
+            return Json(new { success = true });
+        }
+
         public ActionResult TestView(ImageModel image)
         {
             return View(image);

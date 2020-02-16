@@ -96,6 +96,14 @@ namespace CoQ.Domain.Abstracts
         /// <returns>The GameModel of the Liked game.</returns>
         Task<GameModel> PostLikedGame(int UserID, int GameID);
 
+
+        /// <summary>
+        /// Removes a friendship *single tear*
+        /// </summary>
+        /// <param name="UserID">User of friend who initiated removal.</param>
+        /// <param name="FriendID">Friend they are murdering.</param>
+        Task<FriendshipModel> PostRemoveFriend(int UserID, int FriendID);
+
         /// <summary>
         /// NOTE: THIS IS FOR ADMIN USE ONLY. USERS CANT ADD GAMES
         /// </summary>

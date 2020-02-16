@@ -95,5 +95,6 @@
     <Build Include="CoQ\Tables\DislikedGames.sql" />
     <Build Include="CoQ\Stored Procedures\PostLikedGame.sql" />
     <Build Include="CoQ\Stored Procedures\PostDislikedGame.sql" />
+    <Build Include="CoQ\Stored Procedures\PostRemoveFriend.sql" />
   </ItemGroup>
 </Project>
