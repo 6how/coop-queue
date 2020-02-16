@@ -1,10 +1,13 @@
-﻿@using CoQ.Models.Models;
-@model List<FriendshipModel>
+﻿@using CoQ.Web.Models.ViewModels;
+@using CoQ.Models.Models;
+@model FriendsPageViewModel
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <div style="padding: 20px;">
-    <h1>Friends (@Model.Count)</h1>
+    <h1>Friends (@Model.Friends.Count)</h1>
     <div class="divideLine"></div>
-    @foreach (FriendshipModel friend in Model)
+    @foreach (FriendshipModel friend in Model.Friends)
     {
         <a onclick="location.href = '@Url.Action("UserDetails", "Home", new { UserID = friend.OtherFriendID})'">
             <div class="friendCard">
@@ -14,3 +17,40 @@
         </a>
     }
 </div>
+
+@if (Model.PendingFriends.Count > 0)
+{
+    <div>
+        <h1>Friend Requests (@Model.PendingFriends.Count)</h1>
+        <div class="divideLine"></div>
+        @foreach (FriendshipModel pendingFriend in Model.PendingFriends)
+        {
+            <div class="friendCard">
+                <button class="btn btn-outline-success acceptFriend" id="@pendingFriend.OtherFriendID">Accept Request</button>
+                <img class="cardPhoto" src="~/images/@pendingFriend.FriendImageName" />
+                <div class="cardName">@pendingFriend.FriendName</div>
+            </div>
+        }
+    </div>
+}
+
+<script>
+    $('.acceptFriend').click(function () {
+        var FriendID = this.id;
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AcceptFriend", "Home")',
+            data: {
+                UserID: 1,
+                FriendID: FriendID
+            },
+            success: function (data) {
+                location.reload();
+            },
+            error: function () {
+                alert('Something went wrong');
+            }
+        });
+    });
+</script>

@@ -16,5 +16,9 @@ namespace CoQ.Web.Models.ViewModels
         public List<GameNews> News { get; set; }
 
         public List<GameScreenshot> Screenshots { get; set; }
+
+        public int? UserID { get; set; }
+
+        public bool IsLiked { get; set; }
     }
 }
