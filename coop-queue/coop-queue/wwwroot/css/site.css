@@ -242,13 +242,15 @@ for details on configuring this project to bundle and minify static web assets. 
     text-decoration: none;
 }
 
+/*Messages*/
+
 .messagesSection {
     display: block;
     position: fixed;
     top: 75px;
     left: 240px;
-    width: calc(100vw - 270px);
-    height: calc(100vh - 155px);
+    width: 70vw;
+    height: 70vh;
     background-color: lightgray;
 }
 
@@ -373,7 +375,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .divideLine {
     height: 1px;
     background-color: black;
-    width: calc(100vw - 290px);
+    width: 82vw;
 }
 
 .friendCard {
@@ -393,13 +395,13 @@ for details on configuring this project to bundle and minify static web assets. 
     height: 200px;
     border-radius: 10px 10px 0px 0px;
     /*background-image: url("Rick.png");*/
-    background-size: 200px 200px;
+    object-fit: cover;
 }
 
 .cardName {
     text-align: center;
     vertical-align: middle;
-    font-size: 12pt;
+    font-size: 14pt;
     padding: 3px;
     text-decoration: none;
     color:black;
@@ -412,9 +414,10 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /*Likes Page*/
 .likesCard {
+    vertical-align: top;
     display: inline-block;
     width: 200px;
-    height: 230px;
+    height: 240px;
     background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -428,15 +431,17 @@ for details on configuring this project to bundle and minify static web assets. 
     height: 200px;
     border-radius: 10px 10px 0px 0px;
     background-image: url("cod-mw.jpg");
-    background-size: 200px 200px;
+    object-fit: cover;
 }
 
 .likesCardName {
     text-align: center;
-    font-size: 10pt;
-    padding: 3px;
+    font-size: 12pt;
+    padding: 5px;
     text-decoration: none;
     color: black;
+    line-height: 1;
+    overflow-y: no-display;
 }
 
     .likesCardName:hover {
