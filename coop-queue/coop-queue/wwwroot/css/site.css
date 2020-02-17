@@ -242,13 +242,15 @@ for details on configuring this project to bundle and minify static web assets. 
     text-decoration: none;
 }
 
+/*Messages*/
+
 .messagesSection {
     display: block;
     position: fixed;
     top: 75px;
     left: 240px;
-    width: calc(100vw - 270px);
-    height: calc(100vh - 155px);
+    width: 70vw;
+    height: 70vh;
     background-color: lightgray;
 }
 
@@ -373,7 +375,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .divideLine {
     height: 1px;
     background-color: black;
-    width: calc(100vw - 290px);
+    width: 82vw;
 }
 
 .friendCard {
@@ -393,13 +395,13 @@ for details on configuring this project to bundle and minify static web assets. 
     height: 200px;
     border-radius: 10px 10px 0px 0px;
     /*background-image: url("Rick.png");*/
-    background-size: 200px 200px;
+    object-fit: cover;
 }
 
 .cardName {
     text-align: center;
     vertical-align: middle;
-    font-size: 12pt;
+    font-size: 14pt;
     padding: 3px;
     text-decoration: none;
     color:black;
@@ -412,9 +414,10 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /*Likes Page*/
 .likesCard {
+    vertical-align: top;
     display: inline-block;
     width: 200px;
-    height: 230px;
+    height: 240px;
     background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -428,15 +431,17 @@ for details on configuring this project to bundle and minify static web assets. 
     height: 200px;
     border-radius: 10px 10px 0px 0px;
     background-image: url("cod-mw.jpg");
-    background-size: 200px 200px;
+    object-fit: cover;
 }
 
 .likesCardName {
     text-align: center;
-    font-size: 10pt;
-    padding: 3px;
+    font-size: 12pt;
+    padding: 5px;
     text-decoration: none;
     color: black;
+    line-height: 1;
+    overflow-y: no-display;
 }
 
     .likesCardName:hover {
@@ -464,15 +469,16 @@ for details on configuring this project to bundle and minify static web assets. 
 #bioCard {
     position: relative;
     z-index: 2;
-    top: 12vh;
-    left: 38vh;
-    height: 300px;
-    width: calc(100% - 46vh);
+    margin-top: -20vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 30vh;
 }
 
 #topOfBioCard {
     width: 100%;
-    height: 30%;
+    height: 10vh;
     border-radius: 10px 10px 0 0;
     background: linear-gradient(to left, #00ffc8, #00a1ff);
     border-top: 6px solid white;
@@ -492,66 +498,31 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 img#profilePhoto {
-    position: fixed;
+    position: relative;
     z-index: 3;
-    top: 12vh;
-    left: 40.5vh;
-    width: 20vh;
-    height: 20vh;
+    margin-top: -5vh;
+    margin-left: calc(-92vh + 75px);
+    width: 25vh;
+    height: 25vh;
     background-color: black;
     border-radius: 10px;
     border: 6px solid white;
 }
 
-#online {
-    display: block;
-    background-color: #07dc12;
-}
-
-#onlineCircle {
-    display: inherit;
-    position: fixed;
-    z-index: 5;
-    top: 29.25vh;
-    left: 40vh;
-    width: 3vh;
-    height: 3vh;
-    background-color: inherit;
-    border-radius: 1.5vh;
-    color: white;
-    padding-left: 18px;
-    padding-bottom: 4px;
-    padding-top: 10px;
-    font-size: 30px;
-}
-
-#onlineCircleOpacity {
-    display: inherit;
-    position: fixed;
-    z-index: 4;
-    top: 28.61vh;
-    left: 39.37vh;
-    width: 4.25vh;
-    height: 4.25vh;
-    background-color: inherit;
-    border-radius: 2.125vh;
-    opacity: .5;
-}
-
 .userName {
     color: white;
     font-size: 40px;
-    margin-top: 13px;
 }
 
-#bottomLeft {
+#profileLeft {
     width: 30%;
     height: 100%;
+    text-align: center;
     display: inline-block;
     vertical-align: top;
 }
 
-#bottomRight {
+#profileRight {
     width: 69.5%;
     height: 100%;
     display: inline-block;
@@ -559,13 +530,15 @@ img#profilePhoto {
 }
 
 #editProfileBtn {
-    margin-left: 8.5vh;
-    margin-top: 9.5vh;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 13vh;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    font-size: 17px;
+    font-size: 3vh;
     color: white;
     background-color: #0377fc;
     border: none;
