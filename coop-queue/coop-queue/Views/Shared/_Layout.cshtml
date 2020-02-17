@@ -32,7 +32,15 @@
                     <a asp-controller="Home" asp-action="Settings"><button class="dropdown-item" type="button">Settings</button></a>
                     <a asp-controller="Home" asp-action="Preferences"><button class="dropdown-item" type="button">Preferences</button></a>
                     <div class="dropdown-divider"></div>
-                    <button class="dropdown-item" type="button" style="color: red;">Logout</button>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Home" asp-action="Logout" class="dropdown-item" style="color: red;">Logout</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Home" asp-action="Login" class="dropdown-item" style="color: cornflowerblue;">Login</a>
+                        <a asp-controller="Home" asp-action="Register" class="dropdown-item">Register</a>
+                    }
                 </div>
             </div>
 

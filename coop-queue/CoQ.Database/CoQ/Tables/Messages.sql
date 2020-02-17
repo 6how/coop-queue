@@ -5,10 +5,10 @@
     [MessageToID]    INT            NOT NULL,
     [MessageTime]    DATETIME       NOT NULL,
     [IsActive]       BIT            NOT NULL,
-    PRIMARY KEY CLUSTERED ([MessageID] ASC),
-    CONSTRAINT [FK_Messages_Users] FOREIGN KEY ([MessageFromID]) REFERENCES [CoQ].[Users] ([UserID]),
-    CONSTRAINT [FK_Messages_Users1] FOREIGN KEY ([MessageToID]) REFERENCES [CoQ].[Users] ([UserID])
+    PRIMARY KEY CLUSTERED ([MessageID] ASC)
 );
+
+
 
 
 

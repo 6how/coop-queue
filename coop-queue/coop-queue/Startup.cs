@@ -1,6 +1,8 @@
-﻿using CoQ.Domain.Abstracts;
+﻿using coop_queue.Data;
+using CoQ.Domain.Abstracts;
 using CoQ.Domain.Repositories;
 using CoQ.Web.Data;
+using CoQ.Web.Models;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -27,19 +29,16 @@ namespace coop_queue
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
+
+            services.AddIdentity<AppUser, AppRole>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+                options.User.RequireUniqueEmail = true;
+                //options.SignIn.RequireConfirmedEmail = true;
+            }).AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Database hookup
-            services.AddDbContext<CoopQueueDB>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DbConnectionString")));
-            // David's version was .RequireConfimedAccount ?
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedEmail = true)
-                .AddEntityFrameworkStores<CoopQueueDB>();
+            services.AddDbContext<CoopQueueDB>(options => options.UseSqlServer(Configuration.GetConnectionString("DbConnectionString")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbConnectionString")));
 
             services.AddSignalR();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -69,12 +68,13 @@ namespace coop_queue
             app.UseReact(config => {  });
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Landing}/{id?}");
             });
 
             app.UseSignalR(routes =>

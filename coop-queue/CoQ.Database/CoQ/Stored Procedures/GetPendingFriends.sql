@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [CoQ].GetPendingFriends
+﻿CREATE PROCEDURE [CoQ].[GetPendingFriends]
 	@UserID int
 AS
 
@@ -20,7 +20,7 @@ SELECT
 	f.FriendToID AS FriendToID,
 	f.AddedOn
 FROM CoQ.Friendships f
-WHERE (f.FriendFromID = @UserID OR f.FriendToID = @UserID) AND f.IsActive = 0
+WHERE f.FriendToID = @UserID AND f.IsActive = 0
 
 SELECT
 	f.FriendshipID,
@@ -29,13 +29,13 @@ SELECT
 	f.AddedOn AS FriendAddedOn,
 	i.ImageName AS FriendImageName,
 	u.UserName AS FriendName,
-	u.UserID AS OtherFriendID,
+	u.Id AS OtherFriendID,
 	ibs.Base64String AS FriendImagePath
 FROM #PendingFriendInfo f
-LEFT JOIN CoQ.Users u ON (u.UserID = f.FriendFromID OR u.UserID = f.FriendToID)
-JOIN CoQ.Image i ON u.UserImageID = i.ImageID
-JOIN CoQ.ImageBase64String ibs ON u.UserImageID = ibs.ImageID
-WHERE u.UserID <> @UserID
+LEFT JOIN dbo.AspNetUsers u ON (u.Id = f.FriendFromID OR u.Id = f.FriendToID)
+LEFT OUTER JOIN CoQ.Image i ON u.UserImageID = i.ImageID
+LEFT OUTER JOIN CoQ.ImageBase64String ibs ON u.UserImageID = ibs.ImageID
+WHERE u.Id <> @UserID
 
 IF(OBJECT_ID('tempdb..#PendingFriendInfo') IS NOT NULL)
 	BEGIN

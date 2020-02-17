@@ -26,7 +26,7 @@ FROM CoQ.Games g
 JOIN CoQ.DislikedGames dg ON dg.GameID = g.GameID
 WHERE dg.UserID = @UserID
 
-SELECT
+SELECT DISTINCT
 	g.GameID,
 	g.GameName,
 	g.GameDescription,

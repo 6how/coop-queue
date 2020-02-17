@@ -113,7 +113,6 @@
             type: 'POST',
             url: '@Url.Action("DislikeGame", "Home")',
             data: {
-                UserID: @Model.UserID,
                 GameID: @Model.GameModel.GameID
             },
             success: function (data) {
@@ -130,7 +129,6 @@
             type: 'POST',
             url: '@Url.Action("LikeGame", "Home")',
             data: {
-                UserID: @Model.UserID,
                 GameID: @Model.GameModel.GameID
             },
             success: function (data) {

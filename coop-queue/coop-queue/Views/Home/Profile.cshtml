@@ -8,7 +8,14 @@
 
         <div id="bioCard">
             <div id="topOfBioCard">
-                <img src="~/images/@Model.User.ImageName" alt="@Model.User.ImageName" id="profilePhoto">
+                @if (String.IsNullOrEmpty(Model.User.ImageName))
+                {
+                    <img src="~/images/emptyPic.jpg" alt="@Model.User.ImageName" id="profilePhoto">
+                }
+                else
+                {
+                    <img src="~/images/@Model.User.ImageName" alt="@Model.User.ImageName" id="profilePhoto">
+                }
                 <div id="online">
                     <div id="onlineCircle"></div>
                     <div id="onlineCircleOpacity"></div>
@@ -59,7 +66,14 @@
                 {
                     <a onclick="location.href = '@Url.Action("UserDetails", "Home", new { UserID = friend.OtherFriendID})'">
                         <div class="friendCard">
-                            <img class="cardPhoto" src="~/images/@friend.FriendImageName" />
+                            @if (String.IsNullOrEmpty(friend.FriendImageName))
+                            {
+                                <img class="cardPhoto" src="~/images/emptyPic.jpg" />
+                            }
+                            else
+                            {
+                                <img class="cardPhoto" src="~/images/@friend.FriendImageName" />
+                            }
                             <div class="cardName">@friend.FriendName</div>
                         </div>
                     </a>

@@ -16,7 +16,14 @@
 
         <div id="bioCard">
             <div id="topOfBioCard">
-                <img src="~/images/@Model.User.ImageName" alt="@Model.User.ImageName" id="profilePhoto">
+                @if (String.IsNullOrEmpty(Model.User.ImageName))
+                {
+                    <img src="~/images/emptyPic.jpg" alt="@Model.User.ImageName" id="profilePhoto">
+                }
+                else
+                {
+                    <img src="~/images/@Model.User.ImageName" alt="@Model.User.ImageName" id="profilePhoto">
+                }
                 <div id="online">
                     <div id="onlineCircle"></div>
                     <div id="onlineCircleOpacity"></div>
@@ -82,7 +89,6 @@
             type: 'POST',
             url: '@Url.Action("RemoveFriend", "Home")',
             data: {
-                UserID: 1,
                 FriendID: @Model.User.UserID
             },
             success: function (data) {

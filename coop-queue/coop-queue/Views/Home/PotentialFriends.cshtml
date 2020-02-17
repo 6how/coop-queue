@@ -10,7 +10,16 @@
     {
         <div class="friendCard" id="div_@user.UserID">
             <button class="btn btn-outline-success addFriend" id="@user.UserID">Add Friend</button>
-            <img class="cardPhoto" src="~/images/@user.ImageName" />
+            @if (String.IsNullOrEmpty(user.ImageName))
+            {
+                <img class="cardPhoto" src="~/images/emptyPic.jpg" />
+
+            }
+            else
+            {
+                <img class="cardPhoto" src="~/images/@user.ImageName" />
+
+            }
             <div class="cardName">@user.UserName</div>
         </div>
     }
@@ -28,7 +37,6 @@ else
             type: 'POST',
             url: '@Url.Action("AddFriend", "Home")',
             data: {
-                UserID: 1,
                 FriendID: FriendID
             },
             success: function (data) {
