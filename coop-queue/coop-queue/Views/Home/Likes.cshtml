@@ -7,10 +7,10 @@
 
         @foreach (LikedGameModel game in Model)
         {
-            <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID})'">
+            <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID, isLiked = true})'">
                 <div class="likesCard" id="@game.GameID">
                     <img class="likesCardPhoto" src="~/images/@game.ImageName" />
-                    <div class="likesCardName">@game.GameName</div>
+                    <div class="likesCardName"><b>@game.GameName</b> | @game.System</div>
                 </div>
             </a>
         }
