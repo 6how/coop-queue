@@ -1,0 +1,43 @@
+﻿
+<script src="~/js/dropzone.js"></script>
+<link rel="stylesheet" href="~/css/dropzone.css">
+@using CoQ.Web.Models.ViewModels
+@model ProfileViewModel
+
+<script>
+    Dropzone.options.profilePicUploader = {
+        url: "@Url.Action("UploadFile", "Home")",
+        acceptedFiles: "image/*"
+    }
+</script>
+
+<div id="editPage">
+
+    <div class="tile">
+        <div class="sectionHeader">Change Profile Picture:</div><br /><br />
+
+        <form action="@Url.Action("UploadFile", "Home")"
+              class="dropzone"
+              id="profilePicUploader">
+        </form>
+    </div>
+
+
+    <div class="tile">
+        <div class="sectionHeader">Edit Display Name:</div><br /><br /><br />
+        <div class="nameLbl">Name: </div>
+        <input type="text" class="nameInput" />
+        <br />
+    </div>
+
+    <div class="tile">
+        <div class="sectionHeader">Edit Profile Bio:</div>
+        <textarea id="bioField"></textarea>
+    </div>
+
+    <div id="editBtns">
+        <a asp-controller="Home" asp-action="Profile"><div id="backToProfileBtn">Back</div></a>
+        <button id="saveProfileBtn">Save Changes</button>
+</div>
+
+</div>

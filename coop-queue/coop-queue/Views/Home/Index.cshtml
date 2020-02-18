@@ -22,8 +22,8 @@
 </script>
 
 
-<div style="padding: 20px;">
-    <div class="newsfeedTop">
+<div id="newsFeedPage">
+    <div class="newsFeedTop">
 
         <div id="sortDrop">
             <div class="btn-group">
@@ -105,7 +105,7 @@
     </div>
 </div>
 
-<div class="profileLikesSection" id="gameFeed" style="padding-left: 10px;">
+<div class="newsFeedSection" id="gameFeed">
     <h3>Queued Games (@Model.Count)</h3>
     <div class="divideLine"></div>
     @foreach (var game in Model)

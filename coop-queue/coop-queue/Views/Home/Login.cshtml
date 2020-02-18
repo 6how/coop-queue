@@ -1,9 +1,14 @@
-﻿<h1>Login here!</h1>
+﻿<div id="loginPage">
+    <h1>Login here!</h1>
 
-<form id="loginForm" action='@Url.Action("ConfirmLogin", "Home")'>
-    <input type="text" id="enteredUserName" name="enteredUserName" placeholder="Username" />
-    <br />
-    <input type="password" id="enteredPassword" name="enteredPassword" placeholder="Password" />
+    <form id="loginForm" action='@Url.Action("ConfirmLogin", "Home")'>
+        <div id="usernameLbl"></div>
+        <input type="text" id="enteredUserName" name="enteredUserName" placeholder="Username" />
+        <br />
 
-    <button type="submit">Login</button>
-</form>
+        <div id="passwordLbl"></div>
+        <input type="password" id="enteredPassword" name="enteredPassword" placeholder="Password" />
+        <br />
+        <button type="submit" id="loginBtn">Login</button>
+    </form>
+</div>
