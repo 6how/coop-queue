@@ -83,6 +83,11 @@ namespace coop_queue.Controllers
             return View(viewModel);
         }
 
+        public ActionResult EditProfile()
+        {
+            return View();
+        }
+
         public async Task<ActionResult> RegisterAccount(string enteredUserName, string enteredEmail, string enteredPassword)
         {
             AppUser user = await userManager.FindByEmailAsync(enteredEmail);

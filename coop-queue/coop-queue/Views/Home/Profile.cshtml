@@ -1,44 +1,38 @@
 ﻿@using CoQ.Web.Models.ViewModels
 @model ProfileViewModel
 
-<div>
+<div id="profilePage">
     <div id="profilePageTop">
 
-        <div class="profileHeader"></div>
-
-        <div id="bioCard">
-            <div id="topOfBioCard">
-                @if (String.IsNullOrEmpty(Model.User.ImageName))
-                {
-                    <img src="~/images/emptyPic.jpg" alt="@Model.User.ImageName" id="profilePhoto">
-                }
-                else
-                {
-                    <img src="~/images/@Model.User.ImageName" alt="@Model.User.ImageName" id="profilePhoto">
-                }
-                <div id="online">
-                    <div id="onlineCircle"></div>
-                    <div id="onlineCircleOpacity"></div>
-                </div>
-                <div class="userName"><b>@Model.User.UserName</b></div>
-            </div>
-            <div id="profileLeft">
-                <button id="editProfileBtn">Edit Profile</button>
-            </div>
-            <div id="profileRight">
-                <div id="bioHeader">About Me:</div>
-                <div class="userBio">
-                    @Model.User.UserDescription
-                </div>
-            </div>
+        <div id="leftSide">
+            @if (String.IsNullOrEmpty(Model.User.ImageName))
+            {
+                <img src="~/images/emptyPic.jpg" alt="@Model.User.ImageName" id="profilePhoto">
+            }
+            else
+            {
+                <img src="~/images/@Model.User.ImageName" alt="@Model.User.ImageName" id="profilePhoto">
+            }
         </div>
+        <div id="rightSide">
+            <div class="userName"><b>@Model.User.UserName</b></div>
+
+            <div id="bioHeader">About Me:</div>
+            <div class="userBio">
+                @Model.User.UserDescription
+            </div>
+
+            <a asp-controller="Home" asp-action="EditProfile"><div id="editProfileBtn">Edit Profile</div></a>
+
+        </div>
+
     </div>
 
     <div class="profilePageContent">
 
         @if (Model.LikedGames.Count > 0)
         {
-            <div class="profileLikesSection" style="padding-left: 10px;">
+            <div class="profileLikesSection">
                 <h3>Likes (@Model.LikedGames.Count)</h3>
                 <div class="divideLine"></div> 
                 @foreach (var game in Model.LikedGames)
@@ -57,7 +51,7 @@
 
         @if (Model.Friends.Count > 0)
         {
-            <div class="profileFriendSection" style="padding-left: 10px;">
+            <div class="profileFriendSection">
                 <h3>Friends (@Model.Friends.Count)</h3>
                 <div class="divideLine"></div>
                 @foreach (var friend in Model.Friends)

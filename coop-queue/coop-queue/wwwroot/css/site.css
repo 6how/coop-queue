@@ -100,11 +100,13 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .mainContent {
     display: inline-block;
-    position: relative;
-    width: calc(100vw - 15vw);
+    position: fixed;
+    width: 85vw;
+    height: calc(100vw - 55px);
     left: 15vw;
     top: 55px;
     background-color: #f3f3f3;
+    overflow-y: scroll;
 }
 
 .leftNavMenuItem {
@@ -189,6 +191,21 @@ for details on configuring this project to bundle and minify static web assets. 
 #sortDrop {
     float: right;
     display: inline-block;
+}
+
+.newsFeedTop {
+    padding: 20px;
+}
+
+.newsFeedSection {
+    padding-left: 40px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 85vw;
+    height: 100vh;
+    float: right;
+    text-align: center;
 }
 
 /*Messages and Message Threads*/
@@ -375,7 +392,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .divideLine {
     height: 1px;
     background-color: black;
-    width: 82vw;
+    width: calc(95vw - 290px);
 }
 
 .friendCard {
@@ -416,6 +433,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .likesCard {
     vertical-align: top;
     display: inline-block;
+    vertical-align: top;
     width: 200px;
     height: 240px;
     background-color: white;
@@ -432,6 +450,7 @@ for details on configuring this project to bundle and minify static web assets. 
     border-radius: 10px 10px 0px 0px;
     background-image: url("cod-mw.jpg");
     object-fit: cover;
+    background-size: 100% 100%;
 }
 
 .likesCardName {
@@ -452,81 +471,184 @@ for details on configuring this project to bundle and minify static web assets. 
 
 
 /*Profile Page*/
+#profilePage {
+    width: 100vw;
+}
+
 #profilePageTop {
-    position: relative;
-    width: calc(100vw - 15vw);
-    height: 38vh;
-}
-
-.profileHeader {
-    position: relative;
-    z-index: 1;
-    width: calc(100vw - 15vw);
-    height: 30vh;
-    background-color: #373737;
-}
-
-#bioCard {
-    position: relative;
-    z-index: 2;
-    margin-top: -20vh;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    height: 30vh;
-}
-
-#topOfBioCard {
     width: 100%;
-    height: 10vh;
-    border-radius: 10px 10px 0 0;
+    height: 25vh;
     background: linear-gradient(to left, #00ffc8, #00a1ff);
-    border-top: 6px solid white;
-    border-left: 6px solid white;
-    border-right: 6px solid white;
-    text-align: center;
 }
 
-#bottomOfBioCard {
-    width: 100%;
-    height: 70%;
-    border-radius: 0 0 10px 10px;
-    background-color: white;
-    border-bottom: 6px solid white;
-    border-left: 6px solid white;
-    border-right: 6px solid white;
+#leftSide {
+    display: inline-block;
+    width: 15vw;
+    height: 100%;
+    text-align: center;
+    vertical-align: top;
+}
+
+#rightSide {
+    display: inline-block;
+    width: 80vw;
+    height: 100%;
+    text-align: left;
+    color: white;
+    vertical-align: top;
 }
 
 img#profilePhoto {
-    position: relative;
-    z-index: 3;
-    margin-top: -5vh;
-    margin-left: calc(-92vh + 75px);
-    width: 25vh;
-    height: 25vh;
-    background-color: black;
-    border-radius: 10px;
-    border: 6px solid white;
+    height: 20vh;
+    width: 20vh;
+    border: .5vh solid white;
+    border-radius: 2vh;
+    margin-top: 2.5vh;
 }
 
 .userName {
+    font-size: 8vh;
+}
+
+#bioHeader {
+    margin-top: -1vh;
+    font-weight: 800;
+    font-size: 2vh;
+}
+
+.userBio {
+}
+
+#editProfileBtn {
+    width: 140px;
+    height: 45px;
+    background-color: #26eba6;
     color: white;
-    font-size: 40px;
-}
+    border-radius: 10px;
 
-#profileLeft {
-    width: 30%;
-    height: 100%;
+
     text-align: center;
-    display: inline-block;
-    vertical-align: top;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+
+    margin-top: 10px;
+
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-#profileRight {
-    width: 69.5%;
+.profilePageContent {
+    width: 100%;
+    height: 75vh;
+}
+
+.profileLikesSection {
+    padding: 30px;
+}
+
+.profileFriendsSection {
+    padding: 30px;
+}
+
+/*Login */
+
+#loginForm {
+    height: 60vh;
+    width: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: blue;
+    text-align: center;
+}
+
+#enteredUserName {
+    width: 30vh;
+    height: 3.5vh;
+    border-radius: 10px;
+
+    padding-left: 20px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20vh;
+    margin-bottom: 20px;
+}
+
+#enteredPassword {
+    width: 30vh;
+    height: 3.5vh;
+    border-radius: 10px;
+
+    padding-left: 20px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*Edit Page*/
+#editPage {
     height: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
+.tile {
+    width: 60%;
+    height: 240px;
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 5px 5px 8px #888888;
+    text-align: center;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#profilePicUploader {
+    width: 100%;
+
+    background: url('~/images/emptyPic.jpg');
+    background-color: lightgray;
+    object-fit: cover;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sectionHeader {
+    float: left;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.nameLbl {
     display: inline-block;
-    vertical-align: top;
+    font-size: 20px;
+}
+
+.nameInput {
+    display: inline-block;
+    height: 40px;
+    width: 30%;
+    padding-left: 10px;
+
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #editProfileBtn {
@@ -545,20 +667,55 @@ img#profilePhoto {
     border-radius: 5px;
 }
 
-.profilePageContent {
-    padding-left: 20px;
-    padding-right: 20px;
+#editBtns {
+    float: right;
+    margin-right: 20%;
 }
 
-#bioHeader {
+#backToProfileBtn {
+    display: inline-block;
+
+    width: 100px;
+    height: 45px;
+    background-color: gray;
+    color: white;
+    border-radius: 10px;
+
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+
+    margin-top: 10px;
+    padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 10px;
-    font-size: 18px;
-    font-weight: 700;
+    padding-right: 10px;
 }
 
-.userBio {
-    padding-right: 20px;
+#saveProfileBtn {
+    display: inline-block;
+
+    width: 180px;
+    height: 45px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10px;
+
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+
+    margin-top: 10px;
+    padding-bottom: 10px;
+    padding-top: 8px;
     padding-left: 10px;
-    font-weight: 600;
+    padding-right: 10px;
+}
+
+#bioField {
+    width: 100%;
+    height: 140px;
 }
