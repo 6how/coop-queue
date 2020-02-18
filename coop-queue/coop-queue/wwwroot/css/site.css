@@ -259,13 +259,15 @@ for details on configuring this project to bundle and minify static web assets. 
     text-decoration: none;
 }
 
+/*Messages*/
+
 .messagesSection {
     display: block;
     position: fixed;
     top: 75px;
     left: 240px;
-    width: calc(100vw - 270px);
-    height: calc(100vh - 155px);
+    width: 70vw;
+    height: 70vh;
     background-color: lightgray;
 }
 
@@ -410,13 +412,13 @@ for details on configuring this project to bundle and minify static web assets. 
     height: 200px;
     border-radius: 10px 10px 0px 0px;
     /*background-image: url("Rick.png");*/
-    background-size: 200px 200px;
+    object-fit: cover;
 }
 
 .cardName {
     text-align: center;
     vertical-align: middle;
-    font-size: 12pt;
+    font-size: 14pt;
     padding: 3px;
     text-decoration: none;
     color:black;
@@ -429,10 +431,11 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /*Likes Page*/
 .likesCard {
+    vertical-align: top;
     display: inline-block;
     vertical-align: top;
     width: 200px;
-    height: 230px;
+    height: 240px;
     background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -452,10 +455,12 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .likesCardName {
     text-align: center;
-    font-size: 10pt;
-    padding: 3px;
+    font-size: 12pt;
+    padding: 5px;
     text-decoration: none;
     color: black;
+    line-height: 1;
+    overflow-y: no-display;
 }
 
     .likesCardName:hover {
@@ -520,6 +525,7 @@ img#profilePhoto {
     background-color: #26eba6;
     color: white;
     border-radius: 10px;
+
 
     text-align: center;
     font-size: 22px;
@@ -637,13 +643,28 @@ img#profilePhoto {
     display: inline-block;
     height: 40px;
     width: 30%;
-
     padding-left: 10px;
 
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+#editProfileBtn {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 13vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 3vh;
+    color: white;
+    background-color: #0377fc;
+    border: none;
+    border-radius: 5px;
 }
 
 #editBtns {

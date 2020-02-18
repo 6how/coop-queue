@@ -34,14 +34,14 @@
         {
             <div class="profileLikesSection">
                 <h3>Likes (@Model.LikedGames.Count)</h3>
-                <div class="divideLine"></div>
+                <div class="divideLine"></div> 
                 @foreach (var game in Model.LikedGames)
                 {
                     <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID, isLiked = true})'">
 
                         <div class="likesCard">
                             <img class="likesCardPhoto" src="~/images/@game.ImageName" />
-                            <div class="likesCardName"><b>@game.GameName</b> | @game.System</div>
+                            <div class="likesCardName">@game.GameName</div>
                         </div>
                     </a>
                 }

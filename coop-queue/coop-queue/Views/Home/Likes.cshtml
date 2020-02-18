@@ -1,7 +1,7 @@
 ﻿@using CoQ.Models.Models;
 @model List<LikedGameModel>
 
-    <div style="padding: 20px;">
+    <div style="padding: 30px; vertical-align: top;">
         <h1>Likes (@Model.Count)</h1>
         <div class="divideLine"></div>
 
@@ -10,7 +10,7 @@
             <a onclick="location.href = '@Url.Action("GameDetails", "Home", new { GameID =  game.GameID, isLiked = true})'">
                 <div class="likesCard" id="@game.GameID">
                     <img class="likesCardPhoto" src="~/images/@game.ImageName" />
-                    <div class="likesCardName"><b>@game.GameName</b> | @game.System</div>
+                    <div class="likesCardName">@game.GameName</div>
                 </div>
             </a>
         }
